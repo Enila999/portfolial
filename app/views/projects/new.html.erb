@@ -4,18 +4,19 @@
 <%= simple_form_for(@project) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="container">
+    <div class="form-inputs">
+      <%= f.input :customer, label: 'Client', placeholder: 'Entrer un nom' %>
+      <%= f.input :description, label: 'Description du projet', placeholder: 'Décrire le contexte' %>
+      <%= f.input :url_media, label: 'Media', placeholder: 'Url de la photo, video ...' %>
+      <%= f.input :icons, label: 'Icône', placeholder: 'Url icône ...'  %>
+      <%= f.input :logo, placeholder: 'Logo du client' %>
 
-  <div class="form-inputs">
-    <%= f.input :customer, label: 'Client', placeholder: 'Entrer un nom' %>
-    <%= f.input :description, label: 'Description du projet', placeholder: 'Décrire le contexte' %>
-    <%= f.input :url_media, label: 'Media', placeholder: 'Url de la photo, video ...' %>
-    <%= f.input :icons, label: 'Icône', placeholder: 'Url icône ...'  %>
-    <%= f.input :logo, placeholder: 'Logo du client' %>
+    </div>
 
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, class:'form-button' %>
-  </div>
+    <div class="form-actions">
+      <%= f.button :submit, class:'form-button' %>
+    </div>
+    </div>
 <% end %>
 </div>

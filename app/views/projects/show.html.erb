@@ -1,1 +1,14 @@
-<h1>Projet</h1>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.pexels.com/photos/6804093/pexels-photo-6804093.jpeg?auto=compress&cs=tinysrgb&w=600)">
+      <%= @project.customer %>
+  </div>
+  </div>
+
+  <div>
+    <div class="row description">
+      <div class="col-sm-6 col-md-5 col-lg-6"><%= video_tag("Site de Parole Citoyenne.mp4") %></div>
+      <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0 " >
+      <%= image_tag("Logo Parole Citoyenne AI.png" )%>
+      <%= @project.description %>
+      </div>
+    </div>
+  </div>
