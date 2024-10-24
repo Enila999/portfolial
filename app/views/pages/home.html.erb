@@ -1,2 +1,90 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="parent" data-controller="random-delay" data-action="randomDelay#applyRandomDelays">
+  <div class="text-container">
+    <h1 class="title animate-text">PortfoliAl</h1>
+    <%= image_tag "PDP Beige.png" %>
+  </div>
+  <div class="grid">
+    <% (1..50).each do |i| %>
+      <div class="image-container">
+        <%= image_tag "PDP Beige plat.png", id:"img_#{i}", width: 200, class: "superpose", 'data-random-delay-target': 'image' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<script>
+"use strict";
+window.addEventListener("DOMContentLoaded", (event) => {
+  animate_text();
+});
+// -------------------
+function animate_text()
+{
+  let delay = 100,
+      delay_start = 300,
+      contents,
+      letters;
+
+  document.querySelectorAll(".animate-text").forEach(function (elem) {
+    contents = elem.textContent.trim();
+    elem.textContent = "";
+    letters = contents.split("");
+    elem.style.visibility = 'visible';
+
+    letters.forEach(function (letter, index_1) {
+      setTimeout(function () {
+        // ---------
+        // effet machine à écrire (SIMPLE)
+        elem.textContent += letter;
+        // ---------
+        // OU :
+        // effet machine à écrire + animation CSS (SPECIAL)
+        /*
+        var span = document.createElement('span');
+        span.innerHTML = letter.replace(/ /,'&nbsp;');
+        elem.appendChild(span);
+*/
+        // ---------
+      }, delay_start + delay * index_1);
+    });
+    delay_start += delay * letters.length;
+  });
+}
+
+/* ------------------------- */
+/* version jQuery */
+/* ------------------------- */
+/*
+"use strict";
+$(document).ready(function() {
+  animate_text();
+});
+// -------------------
+function animate_text()
+{
+  let delay = 100,
+      delay_start = 0,
+      contents,
+      letters;
+
+  $(".animate-text").each(function(index, obj) {
+    contents = $(obj).text().trim();
+    $(obj).html(''); // on vide le contenu
+    letters = contents.split("");
+    $(letters).each(function(index_1, letter) {
+      setTimeout(function() {
+        // ---------
+        // effet machine à écrire simple
+        $(obj).html( $(obj).html() + letter ); // on ajoute chaque lettre l une après l autre
+        // ---------
+        // ---------
+      }, delay_start + delay * index_1);
+    });
+    // le suivant démarre à la fin du précédent
+    delay_start += delay * letters.length;
+  });
+}
+*/
+</script>
