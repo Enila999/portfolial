@@ -1,17 +1,40 @@
 
 <div class="parent" data-controller="random-delay" data-action="randomDelay#applyRandomDelays">
-  <div class="text-container">
-    <h1 class="title animate-text">PortfoliAl</h1>
-    <%= image_tag "PDP Beige.png" %>
-  </div>
-  <div class="grid">
+  <%# <div style="justify-content: center; display: flex"> %>
+    <div class="text-container">
+      <h1 class="title animate-text">PortfoliAl</h1>
+
+        <div class="image-wrapper">
+        <%= image_tag "PDP Beige.png", class: "image-only-shadow" %>
+        </div>
+      </div>
+
+
+  <div class="grid-head">
     <% (1..50).each do |i| %>
       <div class="image-container">
         <%= image_tag "PDP Beige plat.png", id:"img_#{i}", width: 200, class: "superpose", 'data-random-delay-target': 'image' %>
       </div>
     <% end %>
   </div>
+
+<div class="presentation-wrapper">
+  <div class="grid-pres">
+    <div class="text-block">
+      <p>
+        Quo quae quibusdam et distinctio doloribus sed ratione recusandae. Sit repellendus unde et recusandae quia ab quisquam porro repellat voluptas eum earum sunt est laudantium nihil vel explicabo veritatis
+      </p>
+      <a href="#ton-lien" class="discover-button">Découvrir</a>
+    </div>
+
+    <%= image_tag "PDP Beige.png" %>
+  </div>
 </div>
+
+
+</div>
+
+
 
 
 <script>
