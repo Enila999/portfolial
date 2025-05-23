@@ -18,6 +18,49 @@
     <% end %>
   </div>
 
+ <div>
+    <h2 class="h2-text">Lorem ipsum odor amet, consectetuer adipiscing elit</h2>
+  </div>
+
+<div class="presentation-wrapper">
+  <div class="grid-pres">
+    <div class="text-block">
+      <p>
+        Quo quae quibusdam et distinctio doloribus sed ratione recusandae. Sit repellendus unde et recusandae quia ab quisquam porro repellat voluptas eum earum sunt est laudantium nihil vel explicabo veritatis
+      </p>
+      <a href="#ton-lien" class="discover-button">Découvrir</a>
+    </div>
+   <%= image_tag "PDP Beige.png", class: "rotating", id: "rotating-image" %>
+  </div>
+</div>
+
+<div class="section-fluid-main">
+  <div class="section-row">
+    <% 5.times do |i| %>
+      <div class="section-col">
+        <div class="section">
+          <div class="section-in">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          </div>
+        </div>
+      </div>
+      <div class="hover-text">
+        <h2>Projet <%= i + 1 %></h2>
+      </div>
+    <% end %>
+
+    <!-- 6ème carte : bouton découvrir -->
+    <div class="section-col">
+      <div class="section">
+        <div class="section-in">
+          <button class="discover-button-clair">Découvrir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="presentation-wrapper">
   <div class="grid-pres">
     <div class="text-block">
@@ -27,12 +70,15 @@
       <a href="#ton-lien" class="discover-button">Découvrir</a>
     </div>
 
-    <%= image_tag "PDP Beige.png" %>
+    <div>
+      <%= image_tag "PDP Beige.png" %>
+    </div>
+
   </div>
 </div>
 
-
 </div>
+
 
 
 
@@ -76,38 +122,25 @@ function animate_text()
   });
 }
 
-/* ------------------------- */
-/* version jQuery */
-/* ------------------------- */
-/*
-"use strict";
-$(document).ready(function() {
-  animate_text();
-});
-// -------------------
-function animate_text()
-{
-  let delay = 100,
-      delay_start = 0,
-      contents,
-      letters;
+document.addEventListener("DOMContentLoaded", function () {
+  const rotatingImage = document.getElementById("rotating-image");
 
-  $(".animate-text").each(function(index, obj) {
-    contents = $(obj).text().trim();
-    $(obj).html(''); // on vide le contenu
-    letters = contents.split("");
-    $(letters).each(function(index_1, letter) {
-      setTimeout(function() {
-        // ---------
-        // effet machine à écrire simple
-        $(obj).html( $(obj).html() + letter ); // on ajoute chaque lettre l une après l autre
-        // ---------
-        // ---------
-      }, delay_start + delay * index_1);
-    });
-    // le suivant démarre à la fin du précédent
-    delay_start += delay * letters.length;
-  });
-}
-*/
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        rotatingImage.style.animationPlayState = "running";
+      } else {
+        rotatingImage.style.animationPlayState = "paused";
+      }
+    },
+    {
+      threshold: 0.1 // commence à animer si au moins 10% de l’image est visible
+    }
+  );
+
+  if (rotatingImage) {
+    observer.observe(rotatingImage);
+  }
+});
+
 </script>
