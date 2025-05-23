@@ -36,16 +36,16 @@
 
 <div class="section-fluid-main">
   <div class="section-row">
-    <% 5.times do |i| %>
+    <% @featured_projects.each do |project| %>
       <div class="section-col">
         <div class="section">
           <div class="section-in">
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+            <%= image_tag "logos/#{project.logo}", alt: project.customer, class: "project-logo" if project.logo.present? %>
           </div>
         </div>
       </div>
       <div class="hover-text">
-        <h2>Projet <%= i + 1 %></h2>
+        <h2><%= project.customer %></h2>
       </div>
     <% end %>
 
