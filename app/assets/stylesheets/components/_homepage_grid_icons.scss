@@ -1,0 +1,111 @@
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+
+.card-homepage {
+  position: relative;
+  border-radius: 16px;
+  height: 100px;
+  width: 100px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1)!important;
+  overflow: hidden;
+}
+
+.card-homepage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit; /* hérite du background-image */
+  filter: brightness(1);
+  transition: filter 0.3s ease;
+  z-index: 1;
+}
+
+.card-homepage:hover::before {
+  filter: brightness(0.3);
+}
+
+.icon-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  color: #fafafa;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 2; /* au-dessus du ::before */
+  pointer-events: none;
+  margin: 0;
+}
+
+.card-homepage:hover .icon-title {
+  opacity: 1;
+  visibility: visible;
+}
+
+// .card-homepage{
+//   border-radius: 16px;
+//   height: 100px;
+//   width: 100px;
+//   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1)!important;
+//   transition: filter 0.3s ease;
+//   filter: brightness(1);
+//   &:hover {
+//     filter: brightness(0.3);
+//   }
+// }
+
+// .card-category .icon-title {
+//   opacity: 0;
+//   visibility: hidden;
+//   transition: all 0.3s ease;
+//   color: #2b2a29;
+//   font-size: 16px;
+//   font-weight: bold;
+//   margin: 0;
+// }
+
+// .card-category:hover .icon-title {
+//   opacity: 1;
+//   visibility: visible;
+// }
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

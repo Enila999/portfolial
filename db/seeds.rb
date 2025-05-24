@@ -69,3 +69,21 @@ p5 = Project.create!(
 attach_media(p5, "maison_adge")
 
 puts "Je me suis enrichie en contribuant à ces #{Project.count} projets."
+
+# ** icons **
+Icon.destroy_all
+
+icons = [
+  "AfterEffect", "Asana", "Canva", "CSS", "Figma", "html",
+  "Hubspot", "Illustrator", "JavaScript", "Jira", "PhotoShop",
+  "PremierPro", "Trello", "Webflow", "Wix", "WordPress"
+]
+
+icons.each do |icon_name|
+  Icon.create!(
+    name: icon_name,
+    image: "#{icon_name}.png"
+  )
+end
+
+puts "j'ai créé #{Icon.count} icônes."
