@@ -30,7 +30,17 @@
       </p>
       <a href="#ton-lien" class="discover-button">Découvrir</a>
     </div>
-   <%= image_tag "PDP Beige.png", class: "rotating", id: "rotating-image" %>
+
+    <div class="cards">
+  <% @icons.each do |icon| %>
+  <div class="card-category card-homepage"
+       style="background-image: url(<%= asset_path("icons/#{icon.image}") %>)">
+       <h3 class="icon-title"><%= icon.name.capitalize %></h3>
+  </div>
+<% end %>
+</div>
+
+   <%# <%= image_tag "PDP Beige.png", class: "rotating", id: "rotating-image" %>
   </div>
 </div>
 
