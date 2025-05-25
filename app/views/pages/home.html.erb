@@ -13,7 +13,7 @@
   <div class="grid-head">
     <% (1..50).each do |i| %>
       <div class="image-container">
-        <%= image_tag "PDP Beige plat.png", id:"img_#{i}", width: 200, class: "superpose", 'data-random-delay-target': 'image' %>
+        <%= image_tag "PDP Beige plat.png", id:"img_#{i}", class: "superpose", 'data-random-delay-target': 'image' %>
       </div>
     <% end %>
   </div>
@@ -35,7 +35,7 @@
   <% @icons.each do |icon| %>
   <div class="card-category card-homepage"
        style="background-image: url(<%= asset_path("icons/#{icon.image}") %>)">
-       <h3 class="icon-title"><%= icon.name.capitalize %></h3>
+         <h3 class="icon-title"><%= icon.name.upcase %></h3>
   </div>
 <% end %>
 </div>
