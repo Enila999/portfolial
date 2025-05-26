@@ -17,7 +17,6 @@
 
 .title {
   font-size: calc(100% + 10vw);
-  padding: 10px 30px;
   line-height: 1.1;
   justify-content: center;
   background-color: #fafafa;
@@ -26,7 +25,6 @@
   // Add
   display: flex;
   align-items: center;
-  height: 23vh;
   color: #2b2a29;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -43,13 +41,9 @@
   justify-content: flex-start;
   align-items: center;
   z-index: 100;
-  top: 12%;
-  left: 17.5vw;
 }
 .image-wrapper {
   background-color: #fafafa;
-  width: 23.5vh;
-  height: 23vh;
   border-radius: 0 24px 24px 0;
   display: flex;
   align-items: center;
@@ -62,8 +56,6 @@
   height: 100%;
   object-fit: cover;
   border-radius: 0 24px 24px 0;
-  width: 23.5vh;
-  height: 23vh;
   background-color: #fafafa;
 }
 
@@ -108,7 +100,7 @@
 
 
 /* Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .grid-pres {
     flex-direction: column;
     align-items: center;
@@ -122,13 +114,92 @@
     text-align: center;
     align-items: center;
   }
+
+  .text-container {
+    top: 4%;
+    left: 0.5vw;
+    right: 0.5vw;
+  }
+
+  .image-wrapper {
+    width: 10.5vh;
+    height: 12vh;
+  }
+
+  .image-only-shadow {
+    width: 10vh;
+    height: 10.5vh;
+  }
+
+  .title {
+    padding: 10px 20px;
+    height: 12vh;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 1023px) {
+  .grid-pres {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+    gap: 16px;
+  }
+
+  .text-block {
+    text-align: center;
+    align-items: center;
+  }
+
+  .text-container {
+    top: 5%;
+    left: 12.5vw;
+  }
+
+  .image-wrapper {
+    width: 18vh;
+    height: 21vh;
+  }
+
+  .image-only-shadow {
+    width: 22vh;
+    height: 20vh;
+  }
+
+  .title {
+    padding: 10px 20px;
+    height: 21vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-container {
+    top: 8%;
+    left: 17.5vw;
+  }
+
+  .image-only-shadow {
+    width: 23.5vh;
+    height: 23vh;
+  }
+
+  .image-wrapper {
+    width: 24vh;
+    height: 23vh;
+  }
+
+  .title {
+    padding: 10px 30px;
+    height: 23vh;
+  }
 }
 
 /* Conteneur secondaire - Partie 2b*/
 .h2-text {
 text-align: center;
 font-weight: bold;
-margin-bottom: 30px;
+margin: 30px;
 }
 
 
