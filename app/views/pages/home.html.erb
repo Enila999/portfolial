@@ -50,7 +50,7 @@
       <div class="section-col">
         <div class="section">
           <div class="section-in">
-            <%= image_tag "logos/#{project.logo}", alt: project.customer, class: "project-logo" if project.logo.present? %>
+            <%= image_tag "#{project.logo}", alt: project.customer, class: "project-logo" if project.logo.present? %>
           </div>
         </div>
       </div>
