@@ -1,26 +1,26 @@
 
+
+<div class="card">
 <h1>All Projects</h1>
+</div>
 
-
-<div id="project">
+<div class="card">
   <% @projects.each do |project| %>
-
-    <div class="card" style="width: 18rem;">
-   <%= image_tag "Al_ine Logo 3.png", alt: "Logo Aline", class: "navbar-logo" %>
-  <div class="card-body">
-    <h5 class="card-title">Parole Citoyenne</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">voir plus</a>
-  </div>
-  </div>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
+    <div class="project-index-grid">
+      <%= image_tag project.logo, alt: "Logo de #{project.customer}", class: "card-img-top-index" %>
+      <div class="card-index-body">
+        <h2 class="card-index-title"><%= project.customer %></h2>
+        <p class="card-index-text"><%= project.description %></p>
+        <a href="<%= project.url_media %>" target="_blank" class="discover-button-all">Voir le projet</a>
+      </div>
+    </div>
   <% end %>
 </div>
 
+
+
 <div data-controller="toggle" class="mt-5" data-toggle-target="togglableElement" class="d-none">
-  <button data-action="click->toggle#fire" class="btn btn-outline-primary">Nouveau projet</button>
+  <button data-action="click->toggle#fire" class="discover-button-all">Nouveau projet</button>
   <%= render "form", project: @project %>
 </div>
 

@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:new, :create, :index, :show]
   # Defines the root path route ("/")
   # root "posts#index"
+  get "projects", to: "projects#index"
+
+
 end

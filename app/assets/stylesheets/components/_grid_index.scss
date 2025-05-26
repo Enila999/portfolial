@@ -1,0 +1,88 @@
+.card {
+  margin: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  border: none!important;
+}
+
+.project-index-grid {
+  border-radius: 16px;
+  color: #fafafa;
+}
+
+.project-index-grid img{
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5)!important;
+  border-radius: 16px 16px 0 0;
+}
+
+.project-index-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit; /* hérite du background-image */
+  filter: brightness(1);
+  transition: filter 0.3s ease;
+  z-index: 1;
+}
+
+.project-index-grid:hover::before {
+  filter: brightness(0.3);
+}
+
+.card-index-body {
+  padding: 16px;
+  background-color: #cbbca0;
+  border-radius: 0 0 16px 16px;
+}
+
+
+.card-index-title {
+  color: #fafafa;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.discover-button {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .card {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .card {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .card {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .card {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .card {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
