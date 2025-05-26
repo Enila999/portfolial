@@ -1,22 +1,52 @@
-.card {
-  margin: 80px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
-  border: none!important;
+
+.page-title {
+ background-color: #cbbca0;
+ display: inline-block;
+ text-align: center;
+ border-radius: 16px;
+ padding: 64px;
+ box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+ font-size: 40px;
+ color: #fafafa;
+ font-weight: bold;
+}
+
+.banner {
+  background-image: asset-url("Pattern.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 150px 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .project-index-grid {
-  border-radius: 16px;
-  color: #fafafa;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  margin: 40px auto;
+  padding: 0 40px;
 }
 
-.project-index-grid img{
+.card {
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #cbbca0;
+  color: #2b2a29;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  border: none!important;
+}
+
+.card-img-top-index {
   display: block;
   width: 100%;
   height: auto;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5)!important;
   border-radius: 16px 16px 0 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.project-index-grid img{
+ background-color: #fafafa;
 }
 
 .project-index-grid::before {
