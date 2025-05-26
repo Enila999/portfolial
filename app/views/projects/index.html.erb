@@ -1,12 +1,15 @@
 
-
-<div class="card">
-<h1>All Projects</h1>
+<div class="banner ">
+   <h1 class="page-title">Projets</h1>
+  </div>
 </div>
 
-<div class="card">
+<div class="container">
+
+
+<div class="project-index-grid">
   <% @projects.each do |project| %>
-    <div class="project-index-grid">
+    <div class="card">
       <%= image_tag project.logo, alt: "Logo de #{project.customer}", class: "card-img-top-index" %>
       <div class="card-index-body">
         <h2 class="card-index-title"><%= project.customer %></h2>
@@ -25,3 +28,4 @@
 </div>
 
 <%= link_to "New project", new_project_path %>
+</div>
