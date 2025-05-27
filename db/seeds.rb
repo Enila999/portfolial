@@ -87,3 +87,30 @@ icons.each do |icon_name|
 end
 
 puts "j'ai créé #{Icon.count} icônes."
+
+# ** Banner **
+
+Banner.destroy_all
+
+#** Texte banner **
+text_line_1 = ["Figma", "Adobe", "CMS"]
+text_line_2 = ["Site", "Maquette", "Réseaux Sociaux"]
+image_file = "Pattern.png"
+
+[
+  { row: 1, col: 1, content_type: "image", value: image_file },
+  { row: 1, col: 2, content_type: "text", value: text_line_1[0] },
+  { row: 1, col: 3, content_type: "image", value: image_file },
+  { row: 2, col: 1, content_type: "text", value: text_line_2[0] },
+  { row: 2, col: 2, content_type: "image", value: image_file },
+  { row: 2, col: 3, content_type: "text", value: text_line_2[1] }
+].each_with_index do |item, index|
+  Banner.create!(
+    content_type: item[:content_type],
+    value: item[:value],
+    position: index,
+    row: item[:row],
+    col: item[:col]
+  )
+end
+puts "J'ai créé ma banner."
