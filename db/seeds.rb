@@ -92,19 +92,34 @@ puts "j'ai créé #{Icon.count} icônes."
 
 Banner.destroy_all
 
-#** Texte banner **
-text_line_1 = ["Figma", "Adobe", "CMS"]
-text_line_2 = ["Site", "Maquette", "Réseaux Sociaux"]
+all_texts = ["Figma", "Adobe", "CMS", "Site", "Maquette", "Réseaux Sociaux"].shuffle
 image_file = "Pattern.png"
 
-[
-  { row: 1, col: 1, content_type: "image", value: image_file },
-  { row: 1, col: 2, content_type: "text", value: text_line_1[0] },
-  { row: 1, col: 3, content_type: "image", value: image_file },
-  { row: 2, col: 1, content_type: "text", value: text_line_2[0] },
-  { row: 2, col: 2, content_type: "image", value: image_file },
-  { row: 2, col: 3, content_type: "text", value: text_line_2[1] }
-].each_with_index do |item, index|
+items = []
+
+# Texte pour ligne 1 (col: 1, 3, 5)
+line1_texts = all_texts.first(3)
+# Texte pour ligne 2 (col: 2, 4, 6)
+line2_texts = all_texts.last(3)
+
+(1..6).each do |col|
+  if col.odd?
+    items << { row: 1, col: col, content_type: "text", value: line1_texts.shift }
+  else
+    items << { row: 1, col: col, content_type: "image", value: image_file }
+  end
+end
+
+(1..6).each do |col|
+  if col.odd?
+    items << { row: 2, col: col, content_type: "image", value: image_file }
+  else
+    items << { row: 2, col: col, content_type: "text", value: line2_texts.shift }
+  end
+end
+
+# Enregistrement en base
+items.each_with_index do |item, index|
   Banner.create!(
     content_type: item[:content_type],
     value: item[:value],
@@ -113,4 +128,6 @@ image_file = "Pattern.png"
     col: item[:col]
   )
 end
+
+
 puts "J'ai créé ma banner."
