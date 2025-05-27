@@ -1,7 +1,19 @@
 
-<div class="banner ">
-   <h1 class="page-title">Projets</h1>
-  </div>
+<%# <div class="banner grid-banner">
+   <%# <h1 class="page-title">Projets</h1>%>
+
+  <%# </div>
+</div>  %>
+<div class="banner-grid">
+  <% @banners.each do |banner| %>
+    <div class="banner-cell row-<%= banner.row %> col-<%= banner.col %> <%= banner.content_type %>">
+      <% if banner.content_type == "image" %>
+        <%= image_tag banner.value, alt: "Background", class: "banner-img" %>
+      <% else %>
+        <h2 class="banner-text"><%= banner.value %></h2>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <div class="container">
