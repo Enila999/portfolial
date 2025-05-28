@@ -1,6 +1,9 @@
 
 <div class="banner-background">
-  <div class="banner-grid">
+  <div class="top-banner">
+      <h1 class="title-page">Projets</h1>
+  </div>
+    <div class="banner-grid">
     <% @banners.each do |banner| %>
       <div class="banner-cell row-<%= banner.row %> col-<%= banner.col %> <%= banner.content_type %>">
         <% if banner.content_type == "image" %>
@@ -11,8 +14,6 @@
       </div>
     <% end %>
   </div>
-
-  <h1>Projets</h1>
 </div>
 
 <div class="container">
