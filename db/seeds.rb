@@ -25,7 +25,32 @@ Project.destroy_all
 
 p1 = Project.create!(
   customer: "Parole Citoyenne",
-  description: "Organisation d’une conférence avec Vladimir Fedorovski, création de mini-site, supports de communication, refonte de site.",
+  description: "
+Projet 1 : Conférence Débat
+
+Avec des partenaires de la scène Lilloise, Parole Citoyenne organise une conférence qui accueille un imminent ancien diplomate russo-ukrainien, Vladimir FEDEROVSKI.
+
+   Refonte du Logo de Parole Citoyenne
+
+   Création d'un mini site pour présenter l'invité ​
+
+   Création de visuels
+
+   Mise en place de la communication de l'événement
+
+​​
+
+Contrainte :
+
+Temps limité avec moins de 2 semaines pour communiquer efficacement sur l'événement.​
+
+Projet 2 : Refonte de site internet
+
+Mettre au goût du jour un site internet qui ne l'avait pas été depuis 2016.
+
+Projet 3 : Conférence Débat
+
+Dans le cadre d’un événement organisé par Parole Citoyenne sur la réindustrialisation en France, j’ai été en charge de la communication visuelle. J’ai réalisé l’affiche de promotion et contribué à valoriser cet échange avec Olivier Lluansi, expert en politique industrielle.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
   icons: "event, branding, website, communication",
   logo: "Parole_Citoyenne/Logo Parole Citoyenne.png"
