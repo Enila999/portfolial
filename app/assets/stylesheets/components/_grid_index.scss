@@ -1,15 +1,15 @@
 
-.page-title {
- background-color: #cbbca0;
- display: inline-block;
- text-align: center;
- border-radius: 16px;
- padding: 64px;
- box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
- font-size: 40px;
- color: #fafafa;
- font-weight: bold;
-}
+// .page-title {
+//  background-color: #cbbca0;
+//  display: inline-block;
+//  text-align: center;
+//  border-radius: 16px;
+//  padding: 64px;
+//  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+//  font-size: 40px;
+//  color: #fafafa;
+//  font-weight: bold;
+// }
 
 .project-index-grid {
   display: grid;
@@ -75,7 +75,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 150px 0;
+  padding: 0;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -85,12 +85,8 @@
   background-color: #cbbca0;
 }
 
-.title-page {
-  font-size: 80px;
-}
-
 .banner-background {
-  height: 650px;
+  height: 550px;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -103,7 +99,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   width: 100%;
-  height: 400px;
+  height: 300px;
   overflow: hidden;
   background-color: #cbbca0;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
@@ -112,13 +108,13 @@
 .banner-cell {
   position: absolute;
   width: calc(100% / 6);
-  height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #cbbca0;
   transition: top 0.4s ease;
   color: #fafafa;
+  height: 50%;
 }
 
 .banner-img {
@@ -128,7 +124,6 @@
 }
 
 .banner-text {
-  font-size: 32px;
   font-weight: bold;
   text-align: center;
 }
@@ -153,22 +148,50 @@
 /*Responsiveness*/
 
 // Smallest device
-@media (min-width: 100px) and (max-width: 575px) {
+@media (min-width: 100px) and (max-width: 767px) {
+
+  .title-page {
+    font-size: 60px;
+  }
+
   .card {
   grid-template-columns: 1fr 1fr 1fr;
   }
-}
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767px) {
-  .card {
-    grid-template-columns: 1fr 1fr 1fr;
+  .banner-text {
+    font-size: 16px;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    letter-spacing: -8px;
   }
 }
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
+// Small devices (landscape phones, 768px to 862px)
+@media (min-width: 768px) and (max-width: 862px) {
+  .title-page {
+    font-size: 80px;
+  }
+
   .card {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .banner-text {
+    font-size: 24px;
+  }
+}
+
+// Medium & large devices (tablets, desktop 863px and up)
+@media (min-width: 863px) {
+  .title-page {
+    font-size: 80px;
+  }
+
+  .card {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .banner-text {
+    font-size: 32px;
   }
 }
