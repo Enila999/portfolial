@@ -17,7 +17,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: inherit; /* hérite du background-image */
+  background: inherit;
   filter: brightness(1);
   transition: filter 0.3s ease;
   z-index: 1;
@@ -38,7 +38,7 @@
   color: #fafafa;
   font-size: 14px;
   font-weight: bold;
-  z-index: 2; /* au-dessus du ::before */
+  z-index: 2;
   pointer-events: none;
   margin: 0;
 }
