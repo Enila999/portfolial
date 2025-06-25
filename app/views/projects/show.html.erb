@@ -4,10 +4,24 @@
   </div>
 
 
-  <div class="container">
-    <h2>Tous les projets pour <%= @project.customer %></h2>
-      <div class="description-show">
-        <%= image_tag @project.logo, alt: "Logo de #{@project.customer}", class: "logo-show" %>
-        <%= @project.description %>
+  <div class="container parent">
+    <div class="show-project">
+      <div class="tags">
+        <% @project.tags.each do |tag| %>
+          <span class="tag"><%= tag %></span>
+        <% end %>
       </div>
+        <div class="description-show">
+          <%= image_tag @project.logo, alt: "Logo de #{@project.customer}", class: "logo-show" %>
+          <div class="description-project">
+          <% @project.description.split(/Projet \d+ /).reject(&:blank?).each_with_index do |part, index| %>
+            <div class="sub-project">
+              <div class= "sub-description">
+                <h3 class="sub-title-project">Projet <%= index + 1 %> </h3>
+                <p><%= simple_format(part.strip) %></p>
+              </div>
+            </div>
+          <% end %></div>
+        </div>
+    </div>
   </div>

@@ -26,7 +26,7 @@ Project.destroy_all
 p1 = Project.create!(
   customer: "Parole Citoyenne",
   description: "
-Projet 1 : Conférence Débat
+Projet 1 Conférence Débat
 
 Avec des partenaires de la scène Lilloise, Parole Citoyenne organise une conférence qui accueille un imminent ancien diplomate russo-ukrainien, Vladimir FEDEROVSKI.
 
@@ -40,19 +40,23 @@ Avec des partenaires de la scène Lilloise, Parole Citoyenne organise une confé
 
 ​​
 
-Contrainte :
+Contrainte
 
 Temps limité avec moins de 2 semaines pour communiquer efficacement sur l'événement.​
 
-Projet 2 : Refonte de site internet
+
+
+Projet 2 Refonte de site internet
 
 Mettre au goût du jour un site internet qui ne l'avait pas été depuis 2016.
 
-Projet 3 : Conférence Débat
+
+
+Projet 3 Conférence Débat
 
 Dans le cadre d’un événement organisé par Parole Citoyenne sur la réindustrialisation en France, j’ai été en charge de la communication visuelle. J’ai réalisé l’affiche de promotion et contribué à valoriser cet échange avec Olivier Lluansi, expert en politique industrielle.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  icons: "event, branding, website, communication",
+  tags: ["Site internet", "Logo", "Canva", "WordPress", "Figma", "Communication", "Événementiel", "Formation", "Accompagnement", "Référencement", "SEO", "UI/UX"],
   logo: "Parole_Citoyenne/Logo Parole Citoyenne.png"
 )
 attach_media(p1, "parole_citoyenne")
@@ -61,7 +65,7 @@ p2 = Project.create!(
   customer: "Ni Sawa",
   description: "Création d'identité visuelle complète pour le lancement d’un Hôtel Bar Restaurant à Brazzaville. Logos, affiches, panneaux, tee-shirts et motifs culturels.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  icons: "branding, hospitality, print design",
+  tags: ["Logo", "Vidéo", "Mockup", "Bannière", "Flocage", "Photoshop", "Panneau", "Premier Pro", "Formation", "Accompagnement", "Affiche"],
   logo: "Ni Sawa/Ni Sawa-v10.png"
 )
 attach_media(p2, "ni_sawa", limit: 4, max_files: 6)
@@ -70,16 +74,17 @@ p3 = Project.create!(
   customer: "Braids_Maria",
   description: "Refonte du logo et création d’une vidéo événementielle à partir de posts Instagram.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  icons: "logo, video, event",
+  tags: ["Logo", "Vidéo", "Premier Pro", "Canva"],
   logo: "Braids_Maria/Braids_Maria.png"
 )
 attach_media(p3, "braids_maria")
 
+
 p4 = Project.create!(
   customer: "Sookee",
-  description: "Création de visuels et vidéo pour le lancement d’un service de mise en relation autour de la coiffure texturée à domicile.",
+  description: "Création de visuels et vidéo pour le lancement d’un service de mise en relation autour de la coiffure texturée à domicile. Création de vidéo de présentation, de plaquette, de posts instagram. Stratégie de lancement.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  icons: "social media, video, haircare",
+  tags: ["Réseaux sociaux", "Vidéo", "Premier Pro", "Illustrator", "After Effect", "Canva", "Webflow", "Site internet"],
   logo: "Sookee/Logo Sookee SF.png"
 )
 attach_media(p4, "sookee")
@@ -88,10 +93,19 @@ p5 = Project.create!(
   customer: "Maison ADGÉ",
   description: "Refonte du site e-commerce, optimisation SEO, conseil client, et création d’une charte graphique pour une marque de kimonos et pyjamas en wax.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  icons: "ecommerce, fashion, SEO, UX/UI",
+  tags: ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque"] ,
   logo: "Maison_ADGE/Logo Maison ADGE.png"
 )
 attach_media(p5, "maison_adge")
+
+p6 = Project.create!(
+  customer: "Al_ine",
+  description: "Refonte du PortfoliAl créé initialement sur Wix dans un soucis de temps. Création de Charte graphique avec un personnal branding. Refonte entièrement codée sur Ruby on Rails. Site entièrement personnalisé à l'image du client.",
+  url_media: "https://alinegl218.wixsite.com/portfolial",
+  tags: ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque", "HTML", "CSS", "JavaScript", "Ruby on Rails"],
+  logo: "Al_ine/Al_ine Logo.png"
+)
+attach_media(p6, "Al_ine")
 
 puts "Je me suis enrichie en contribuant à ces #{Project.count} projets."
 
