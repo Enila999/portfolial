@@ -1,14 +1,56 @@
+.show-project {
+margin: 60px auto;
+}
+
 .description-show {
   display: flex;
   margin-top: 40px;
   gap: 20px;
 }
 
-
-
 .logo-show {
-  width: 300px;
+  max-width: 300px;
+  max-height: 200px ;
   border-radius: 16px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   background-color: #fafafa;
+  max-height: fit-content;
+}
+
+.description-project {
+  background-color: none;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #cbbca0;
+  color: #fafafa;
+  border-radius: 16px;
+  padding: 4px 8px;
+  margin: 2px;
+  font-size: 0.9em;
+}
+
+
+.sub-project {
+  border: 1px solid #ffffff;
+  border-radius: 1em;
+  // padding: 20px;
+  margin-bottom: 30px ;
+  background-image: asset-url("Pattern.png");
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.sub-description{
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur( 16px );
+  -webkit-backdrop-filter: blur(20px);
+  margin: 8px;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+
+.sub-title-project {
+  font-weight: bold;
 }
