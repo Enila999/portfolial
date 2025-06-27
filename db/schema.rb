@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_25_154843) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_26_162655) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_25_154843) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "project_tags", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_tags_on_project_id"
+    t.index ["tag_id"], name: "index_project_tags_on_tag_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "customer"
     t.string "description"
@@ -70,6 +79,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_25_154843) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "tags", default: [], array: true
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,4 +102,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_25_154843) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "project_tags", "projects"
+  add_foreign_key "project_tags", "tags"
 end

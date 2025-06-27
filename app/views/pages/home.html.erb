@@ -63,7 +63,7 @@
     <div class="section-col">
       <div class="section">
         <div class="section-in">
-          <button class="discover-button-clair">Découvrir</button>
+            <%= link_to "Découvrir", projects_path, class: "discover-button-clair" %>
         </div>
       </div>
     </div>
@@ -94,43 +94,29 @@
 
 
 <script>
-"use strict";
-window.addEventListener("DOMContentLoaded", (event) => {
-  animate_text();
-});
-// -------------------
-function animate_text()
-{
-  let delay = 100,
-      delay_start = 300,
-      contents,
-      letters;
+ "use strict";
 
-  document.querySelectorAll(".animate-text").forEach(function (elem) {
-    contents = elem.textContent.trim();
-    elem.textContent = "";
-    letters = contents.split("");
-    elem.style.visibility = 'visible';
+  function animate_text() {
+    let delay = 100;
+    let delay_start = 300;
 
-    letters.forEach(function (letter, index_1) {
-      setTimeout(function () {
-        // ---------
-        // effet machine à écrire (SIMPLE)
-        elem.textContent += letter;
-        // ---------
-        // OU :
-        // effet machine à écrire + animation CSS (SPECIAL)
-        /*
-        var span = document.createElement('span');
-        span.innerHTML = letter.replace(/ /,'&nbsp;');
-        elem.appendChild(span);
-*/
-        // ---------
-      }, delay_start + delay * index_1);
+    document.querySelectorAll(".animate-text").forEach(function (elem) {
+      const contents = elem.textContent.trim();
+      elem.textContent = "";
+      elem.style.visibility = 'visible';
+
+      contents.split("").forEach(function (letter, index) {
+        setTimeout(function () {
+          elem.textContent += letter;
+        }, delay_start + delay * index);
+      });
+
+      delay_start += delay * contents.length;
     });
-    delay_start += delay * letters.length;
-  });
-}
+  }
+
+  document.addEventListener("DOMContentLoaded", animate_text);
+  document.addEventListener("turbo:load", animate_text);
 
 document.addEventListener("DOMContentLoaded", function () {
   const rotatingImage = document.getElementById("rotating-image");

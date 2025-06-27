@@ -3,12 +3,36 @@
   <head>
     <title>Portfolial</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+      /* Optionnel : ajoute une case cochée avant chaque option sélectionnée */
+      .select2-results__option[aria-selected=true]::before {
+        content: "✓ ";
+        color: #cbbca0;
+      }
+    </style>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      $('.tag-select').select2({
+        placeholder: "Choisir des tags",
+        closeOnSelect: false,
+        width: '100%'
+      });
+    });
+  </script>
+
+
 
   <body>
     <%= render "shared/navbar" %>

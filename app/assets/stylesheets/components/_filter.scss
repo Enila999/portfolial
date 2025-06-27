@@ -1,0 +1,78 @@
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #fafafa;
+  border: 1px solid #cbbca0;
+  border-radius: 16px;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 999;
+}
+
+.suggestion-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #cbbca0;
+}
+
+
+.filter{
+  margin: 30px;
+}
+
+.tag-badge {
+  background-color: #fafafa;
+  color: #2b2a29;
+  border-radius: 16px;
+  padding: 4px 10px;
+  margin: 4px 4px 4px 0;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.overflow-indicator {
+  background-color: transparent;
+  color: #2b2a29;
+  font-weight: bold;
+}
+
+.tag-input {
+  background-color: #fafafa;
+  border: 1px solid #cbbca0;
+  border-radius: 16px;
+  padding: 8px;
+}
+
+.button-filter {
+  background-color: #cbbca0;
+  color: #fafafa;
+  border-radius: 16px;
+  border: none;
+  padding: 8px;
+  font-weight: bold;
+}
+
+.button-filter:hover {
+  background-color: #fafafa;
+  color: #cbbca0;
+  border-radius: 16px;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 1px 2px 1px rgba(158, 146, 125, 0.4);
+}
