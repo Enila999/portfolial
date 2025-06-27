@@ -1,4 +1,5 @@
 
+<div class="parent">
 <div class="banner-background">
   <div class="top-banner">
       <h1 class="title-page">Projets</h1>
@@ -17,27 +18,35 @@
 </div>
 
 <div class="container">
-
-
-<div class="project-index-grid">
-  <% @projects.each do |project| %>
-    <div class="card">
-      <%= image_tag project.logo, alt: "Logo de #{project.customer}", class: "card-img-top-index" %>
-      <div class="card-index-body">
-        <h2 class="card-index-title"><%= project.customer %></h2>
-        <p class="card-index-text"><%= project.description %></p>
-        <a href="<%= project.url_media %>" target="_blank" class="discover-button-all">Voir le projet</a>
-      </div>
+  <div class="pre-footer">
+    <div class="filter"><%= render 'filter' %>
     </div>
-  <% end %>
+    <div class="project-index-grid">
+      <% @projects.each do |project| %>
+        <div class="card">
+          <%= image_tag project.logo, alt: "Logo de #{project.customer}", class: "card-img-top-index" %>
+          <div class="card-index-body">
+            <h2 class="card-index-title"><%= project.customer %></h2>
+            <p class="card-index-text"><%= project.description %></p>
+
+            <!-- Tags du projet -->
+          <div class="tag-list">
+            <% visible_tags = project.tags.first(4) %>
+            <% visible_tags.each do |tag| %>
+              <span class="tag-badge"><%= tag.name %></span>
+            <% end %>
+
+            <% if project.tags.size > 4 %>
+              <span class="tag-badge overflow-indicator">...</span>
+            <% end %>
+          </div>
+            <%= link_to "Voir le projet", project_path(project), class: "discover-button-all" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%= link_to "Nouveau projet", new_project_path, class: "discover-button" %>
+  </div>
 </div>
-
-
-
-<div data-controller="toggle" class="mt-5" data-toggle-target="togglableElement" class="d-none">
-  <button data-action="click->toggle#fire" class="discover-button-all">Nouveau projet</button>
-  <%= render "form", project: @project %>
-</div>
-
-<%= link_to "New project", new_project_path %>
 </div>

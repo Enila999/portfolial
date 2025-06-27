@@ -8,7 +8,7 @@
     <div class="show-project">
       <div class="tags">
         <% @project.tags.each do |tag| %>
-          <span class="tag"><%= tag %></span>
+          <span class="tag"><%= tag.name %></span>
         <% end %>
       </div>
         <div class="description-show">
@@ -23,5 +23,7 @@
             </div>
           <% end %></div>
         </div>
+
+          <%= link_to "Retour sur les projets", projects_path, class: "discover-button" %>
     </div>
   </div>

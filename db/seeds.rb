@@ -56,7 +56,7 @@ Projet 3 Conférence Débat
 
 Dans le cadre d’un événement organisé par Parole Citoyenne sur la réindustrialisation en France, j’ai été en charge de la communication visuelle. J’ai réalisé l’affiche de promotion et contribué à valoriser cet échange avec Olivier Lluansi, expert en politique industrielle.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  tags: ["Site internet", "Logo", "Canva", "WordPress", "Figma", "Communication", "Événementiel", "Formation", "Accompagnement", "Référencement", "SEO", "UI/UX"],
+  # tags: ["Site internet", "Logo", "Canva", "WordPress", "Figma", "Communication", "Événementiel", "Formation", "Accompagnement", "Référencement", "SEO", "UI/UX"],
   logo: "Parole_Citoyenne/Logo Parole Citoyenne.png"
 )
 attach_media(p1, "parole_citoyenne")
@@ -65,7 +65,7 @@ p2 = Project.create!(
   customer: "Ni Sawa",
   description: "Création d'identité visuelle complète pour le lancement d’un Hôtel Bar Restaurant à Brazzaville. Logos, affiches, panneaux, tee-shirts et motifs culturels.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  tags: ["Logo", "Vidéo", "Mockup", "Bannière", "Flocage", "Photoshop", "Panneau", "Premier Pro", "Formation", "Accompagnement", "Affiche"],
+  # tags: ["Logo", "Vidéo", "Mockup", "Bannière", "Flocage", "Photoshop", "Panneau", "Premier Pro", "Formation", "Accompagnement", "Affiche"],
   logo: "Ni Sawa/Ni Sawa-v10.png"
 )
 attach_media(p2, "ni_sawa", limit: 4, max_files: 6)
@@ -74,7 +74,7 @@ p3 = Project.create!(
   customer: "Braids_Maria",
   description: "Refonte du logo et création d’une vidéo événementielle à partir de posts Instagram.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  tags: ["Logo", "Vidéo", "Premier Pro", "Canva"],
+  # tags: ["Logo", "Vidéo", "Premier Pro", "Canva"],
   logo: "Braids_Maria/Braids_Maria.png"
 )
 attach_media(p3, "braids_maria")
@@ -84,7 +84,7 @@ p4 = Project.create!(
   customer: "Sookee",
   description: "Création de visuels et vidéo pour le lancement d’un service de mise en relation autour de la coiffure texturée à domicile. Création de vidéo de présentation, de plaquette, de posts instagram. Stratégie de lancement.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  tags: ["Réseaux sociaux", "Vidéo", "Premier Pro", "Illustrator", "After Effect", "Canva", "Webflow", "Site internet"],
+  # tags: ["Réseaux sociaux", "Vidéo", "Premier Pro", "Illustrator", "After Effect", "Canva", "Webflow", "Site internet"],
   logo: "Sookee/Logo Sookee SF.png"
 )
 attach_media(p4, "sookee")
@@ -93,7 +93,7 @@ p5 = Project.create!(
   customer: "Maison ADGÉ",
   description: "Refonte du site e-commerce, optimisation SEO, conseil client, et création d’une charte graphique pour une marque de kimonos et pyjamas en wax.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  tags: ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque"] ,
+  # tags: ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque"] ,
   logo: "Maison_ADGE/Logo Maison ADGE.png"
 )
 attach_media(p5, "maison_adge")
@@ -102,10 +102,38 @@ p6 = Project.create!(
   customer: "Al_ine",
   description: "Refonte du PortfoliAl créé initialement sur Wix dans un soucis de temps. Création de Charte graphique avec un personnal branding. Refonte entièrement codée sur Ruby on Rails. Site entièrement personnalisé à l'image du client.",
   url_media: "https://alinegl218.wixsite.com/portfolial",
-  tags: ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque", "HTML", "CSS", "JavaScript", "Ruby on Rails"],
+  # tags: ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque", "HTML", "CSS", "JavaScript", "Ruby on Rails"],
   logo: "Al_ine/Al_ine Logo.png"
 )
 attach_media(p6, "Al_ine")
+
+tag_names = [
+  "Accompagnement", "Affiche", "After Effect", "Bannière", "Canva",
+  "Charte graphique", "Communication", "CSS", "Figma", "Flocage",
+  "HTML", "Identité de marque", "Illustrator", "JavaScript", "Logo",
+  "Mockup", "Panneau", "Photoshop", "Premier Pro", "Référencement",
+  "Réseaux sociaux", "Ruby on Rails", "SEO", "Site internet", "UX/UI",
+  "Vidéo", "Webflow", "Wix", "WordPress"
+]
+
+project_tags_map = {
+  "Al_ine" => ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque", "HTML", "CSS", "JavaScript", "Ruby on Rails"],
+  "Maison ADGÉ" => ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque"],
+  "Sookee" => ["Réseaux sociaux", "Vidéo", "Premier Pro", "Illustrator", "After Effect", "Canva", "Webflow", "Site internet"],
+  "Braids_Maria" => ["Logo", "Vidéo", "Premier Pro", "Canva"],
+  "Ni Sawa" => ["Logo", "Vidéo", "Mockup", "Bannière", "Flocage", "Photoshop", "Panneau", "Premier Pro", "Formation", "Accompagnement", "Affiche"],
+  "Parole Citoyenne" => ["Site internet", "Logo", "Canva", "WordPress", "Figma", "Communication", "Événementiel", "Formation", "Accompagnement", "Référencement", "SEO", "UI/UX"]
+}
+
+project_tags_map.each do |customer_name, tag_names|
+  project = Project.find_by(customer: customer_name)
+  next unless project
+
+  tag_names.each do |tag_name|
+    tag = Tag.find_or_create_by!(name: tag_name)
+    project.tags << tag unless project.tags.include?(tag)
+  end
+end
 
 puts "Je me suis enrichie en contribuant à ces #{Project.count} projets."
 
