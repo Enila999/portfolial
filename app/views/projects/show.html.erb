@@ -1,8 +1,21 @@
-  <div class="card-category top-banner">
-      <%= @project.customer %>
-  </div>
-  </div>
+<div class="parent">
+  <div class="pre-banner">
+    <div class="banner-background">
+      <div class="top-banner">
+        <div class="banner-img-left">
+          <%= image_tag "Pattern.png" %>
+        </div>
 
+        <div class="side-banner">
+          <h1 class="title-page"><%= @project.customer %></h1>
+        </div>
+
+        <div class="side-banner-img">
+          <%= image_tag "Pattern.png" %>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container parent">
     <div class="show-project">
@@ -27,3 +40,4 @@
           <%= link_to "Retour sur les projets", projects_path, class: "discover-button" %>
     </div>
   </div>
+</div>

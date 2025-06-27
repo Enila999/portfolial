@@ -1,21 +1,35 @@
 
 <div class="parent">
-<div class="banner-background">
-  <div class="top-banner">
-      <h1 class="title-page">Projets</h1>
-  </div>
-    <div class="banner-grid">
+  <div class="pre-banner">
+    <div class="banner-background">
+      <div class="top-banner">
+        <div class="banner-img-left">
+          <%= image_tag "Pattern.png" %>
+        </div>
+
+        <div class="side-banner">
+          <h1 class="title-page">Projets</h1>
+        </div>
+
+  <div class="banner-grid">
     <% @banners.each do |banner| %>
       <div class="banner-cell row-<%= banner.row %> col-<%= banner.col %> <%= banner.content_type %>">
         <% if banner.content_type == "image" %>
           <%= image_tag banner.value, alt: "Background", class: "banner-img" %>
         <% else %>
-          <h2 class="banner-text"><%= banner.value %></h2>
+          <% category = banner.value %>
+          <%= link_to projects_path(tag: category), class: "link" do %>
+            <h2 class="banner-text" ><%= category %></h2>
+          <% end %>
         <% end %>
       </div>
     <% end %>
   </div>
-</div>
+
+      </div>
+    </div>
+  </div>
+
 
 <div class="container">
   <div class="pre-footer">
