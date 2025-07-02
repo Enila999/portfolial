@@ -72,10 +72,11 @@ p {
 .section-in img {
   display: block;
   width: 100%;
-  height: auto;
   transition: transform 250ms linear;
   border-radius: 16px;
-
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: top;
 }
 
 .section-col:hover .section-in img {

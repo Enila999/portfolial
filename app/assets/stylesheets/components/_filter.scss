@@ -1,3 +1,61 @@
+/* Ligne horizontale pour label + champ + bouton */
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Label */
+.filter-label {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Conteneur autour du champ et des suggestions */
+.autocomplete-wrapper {
+  position: relative;
+  width: 250px;
+}
+
+/* Champ de recherche */
+.tag-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.tag-input {
+  background-color: #fafafa;
+  border: 1px solid #cbbca0;
+  border-radius: 16px;
+  padding: 8px 2.5rem 8px 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Bouton ✕ */
+.clear-tag-input {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #999;
+  cursor: pointer;
+  display: none;
+  padding: 0;
+  line-height: 1;
+}
+
+.clear-tag-input:hover {
+  color: #2b2a29;
+}
+
+/* Liste de suggestions */
 .suggestions-list {
   list-style: none;
   padding: 0;
@@ -8,7 +66,23 @@
   max-height: 200px;
   overflow-y: auto;
   position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
   z-index: 999;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
+  /* Animation fade-in */
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.suggestions-list.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .suggestion-item {
@@ -20,50 +94,16 @@
   background-color: #cbbca0;
 }
 
-
-.filter{
-  margin: 30px;
-}
-
-.tag-badge {
-  background-color: #fafafa;
-  color: #2b2a29;
-  border-radius: 16px;
-  padding: 4px 10px;
-  margin: 4px 4px 4px 0;
-  font-size: 0.75rem;
-  display: inline-block;
-}
-
-.tag-list {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 100%;
-}
-
-.overflow-indicator {
-  background-color: transparent;
-  color: #2b2a29;
-  font-weight: bold;
-}
-
-.tag-input {
-  background-color: #fafafa;
-  border: 1px solid #cbbca0;
-  border-radius: 16px;
-  padding: 8px;
-}
-
+/* Bouton Filtrer */
 .button-filter {
   background-color: #cbbca0;
   color: #fafafa;
   border-radius: 16px;
   border: none;
-  padding: 8px;
+  padding: 8px 16px;
   font-weight: bold;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .button-filter:hover {
@@ -73,6 +113,7 @@
   border: none;
   padding: 8px 16px;
   font-weight: bold;
+  letter-spacing: 2px;
   transition: all 0.3s ease;
   box-shadow: 1px 2px 1px rgba(158, 146, 125, 0.4);
 }
