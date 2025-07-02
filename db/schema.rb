@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_26_162655) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_02_173706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_26_162655) do
     t.integer "position"
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "icons", force: :cascade do |t|
     t.string "name"
     t.string "image"
@@ -79,6 +85,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_26_162655) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "tags", default: [], array: true
+    t.string "slug"
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_projects_on_customer_id"
+    t.index ["slug"], name: "index_projects_on_slug", unique: true
   end
 
   create_table "tags", force: :cascade do |t|
@@ -104,4 +114,5 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_26_162655) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "project_tags", "projects"
   add_foreign_key "project_tags", "tags"
+  add_foreign_key "projects", "customers"
 end

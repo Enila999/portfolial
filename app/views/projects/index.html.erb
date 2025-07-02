@@ -1,5 +1,5 @@
-
 <div class="parent">
+  <!-- Bannière -->
   <div class="pre-banner">
     <div class="banner-background">
       <div class="top-banner">
@@ -11,56 +11,67 @@
           <h1 class="title-page">Projets</h1>
         </div>
 
-  <div class="banner-grid">
-    <% @banners.each do |banner| %>
-      <div class="banner-cell row-<%= banner.row %> col-<%= banner.col %> <%= banner.content_type %>">
-        <% if banner.content_type == "image" %>
-          <%= image_tag banner.value, alt: "Background", class: "banner-img" %>
-        <% else %>
-          <% category = banner.value %>
-          <%= link_to projects_path(tag: category), class: "link" do %>
-            <h2 class="banner-text" ><%= category %></h2>
+        <div class="banner-grid">
+          <% @banners.each do |banner| %>
+            <div class="banner-cell row-<%= banner.row %> col-<%= banner.col %> <%= banner.content_type %>">
+              <% if banner.content_type == "image" %>
+                <%= image_tag banner.value, alt: "Background", class: "banner-img" %>
+              <% else %>
+                <%= link_to projects_path(tag: banner.value), class: "link" do %>
+                  <h2 class="banner-text"><%= format_tag_name(banner.value) %></h2>
+                <% end %>
+              <% end %>
+            </div>
           <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="container">
+    <div class="pre-footer">
+      <!-- Filtres -->
+      <div class="filter">
+        <%= render 'filter' %>
+      </div>
+
+      <!-- Grille des projets -->
+      <div class="project-index-grid">
+        <% @projects.each do |project| %>
+          <div class="card">
+            <%= image_tag project.logo, alt: "Logo de #{project.customer&.name || 'Projet'}", class: "card-img-top-index" %>
+
+            <div class="card-index-body">
+              <h2 class="card-index-title"><%= project.customer&.name %></h2>
+              <p class="card-index-text"><%= project.description %></p>
+
+              <!-- Tags -->
+              <div class="tag-list">
+                <% visible_tags = project.tags.first(4) %>
+                <% visible_tags.each do |tag| %>
+                  <span class="tag-badge"><%= format_tag_name(tag.name) %></span>
+                <% end %>
+
+                <% if project.tags.size > 4 %>
+                  <span class="tag-badge overflow-indicator">...</span>
+                <% end %>
+              </div>
+
+              <%= link_to "Voir le projet", project_path(project), class: "discover-button-all" %>
+            </div>
+          </div>
         <% end %>
       </div>
-    <% end %>
-  </div>
 
-      </div>
-    </div>
-  </div>
-
-
-<div class="container">
-  <div class="pre-footer">
-    <div class="filter"><%= render 'filter' %>
-    </div>
-    <div class="project-index-grid">
-      <% @projects.each do |project| %>
-        <div class="card">
-          <%= image_tag project.logo, alt: "Logo de #{project.customer}", class: "card-img-top-index" %>
-          <div class="card-index-body">
-            <h2 class="card-index-title"><%= project.customer %></h2>
-            <p class="card-index-text"><%= project.description %></p>
-
-            <!-- Tags du projet -->
-          <div class="tag-list">
-            <% visible_tags = project.tags.first(4) %>
-            <% visible_tags.each do |tag| %>
-              <span class="tag-badge"><%= tag.name %></span>
-            <% end %>
-
-            <% if project.tags.size > 4 %>
-              <span class="tag-badge overflow-indicator">...</span>
-            <% end %>
-          </div>
-            <%= link_to "Voir le projet", project_path(project), class: "discover-button-all" %>
-          </div>
-        </div>
+      <!-- Bouton nouveau projet -->
+      <% if user_signed_in? %>
+        <%= link_to "Nouveau projet", new_project_path, class: "discover-button"%>
+      <% else %>
+      <p class="login-hint">
+        <%= link_to "Connecte-toi", new_user_session_path, class: "discover-button" %> pour créer un projet.
+      </p>
       <% end %>
     </div>
-
-    <%= link_to "Nouveau projet", new_project_path, class: "discover-button" %>
   </div>
-</div>
 </div>

@@ -1,24 +1,38 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input", "suggestions"]
+  static targets = ["input", "suggestions", "clear"]
   static values = { tags: Array }
 
   connect() {
-    // Affiche les suggestions au fur et à mesure
-    this.inputTarget.addEventListener("input", this.updateSuggestions.bind(this))
+    this.inputTarget.addEventListener("input", () => {
+      this.updateSuggestions()
+      this.toggleClearButton()
+    })
 
-    // Ferme la liste si on quitte le champ input
     this.inputTarget.addEventListener("blur", () => {
       setTimeout(() => {
         this.suggestionsTarget.innerHTML = ""
+        this.suggestionsTarget.classList.remove("show")
       }, 150)
     })
 
-    // Ferme aussi la liste si on valide le formulaire
     this.element.addEventListener("submit", () => {
       this.suggestionsTarget.innerHTML = ""
+      this.suggestionsTarget.classList.remove("show")
     })
+
+    if (this.hasClearTarget) {
+      this.clearTarget.addEventListener("click", () => {
+        this.inputTarget.value = ""
+        this.inputTarget.focus()
+        this.suggestionsTarget.innerHTML = ""
+        this.suggestionsTarget.classList.remove("show")
+        this.toggleClearButton()
+      })
+    }
+
+    this.toggleClearButton()
   }
 
   updateSuggestions() {
@@ -31,6 +45,12 @@ export default class extends Controller {
 
   renderSuggestions(matches) {
     this.suggestionsTarget.innerHTML = ""
+
+    if (matches.length === 0) {
+      this.suggestionsTarget.classList.remove("show")
+      return
+    }
+
     matches.forEach(tag => {
       const li = document.createElement("li")
       li.textContent = tag
@@ -38,8 +58,18 @@ export default class extends Controller {
       li.addEventListener("click", () => {
         this.inputTarget.value = tag
         this.suggestionsTarget.innerHTML = ""
+        this.suggestionsTarget.classList.remove("show")
+        this.toggleClearButton()
       })
       this.suggestionsTarget.appendChild(li)
     })
+
+    this.suggestionsTarget.classList.add("show")
+  }
+
+  toggleClearButton() {
+    if (this.hasClearTarget) {
+      this.clearTarget.style.display = this.inputTarget.value ? "block" : "none"
+    }
   }
 }

@@ -1,10 +1,41 @@
-<div data-controller="tag-autocomplete"
-     data-tag-autocomplete-tags-value="<%= ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque", "HTML", "CSS", "JavaScript", "Ruby on Rails", "Réseaux sociaux", "Vidéo", "After Effect", "Webflow", "Logo", "Mockup", "Bannière", "Flocage", "Photoshop", "Panneau", "Formation", "Accompagnement", "Affiche", "WordPress", "Communication", "Événementiel", "UI/UX"].to_json %>">
-  <%= form_with url: projects_path, method: :get, local: true, class: "filter-form" do %>
-    <%= label_tag :tag, "Filtrer par tag" %>
-    <%= text_field_tag :tag, params[:tag], placeholder: "Commencez à taper...", data: { tag_autocomplete_target: "input" }, autocomplete: "off", class: "tag-input" %>
-    <%= submit_tag "Filtrer", class: "button-filter" %>
-  <% end %>
+<%= form_with url: projects_path, method: :get, local: true,
+              class: "filter-form",
+              data: {
+                controller: "tag-autocomplete",
+                tag_autocomplete_tags_value: [
+                  "Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator",
+                  "Premier Pro", "Canva", "Figma", "Identité de marque", "HTML", "CSS", "JavaScript",
+                  "Ruby on Rails", "Réseaux sociaux", "Vidéo", "After Effect", "Webflow", "Logo", "Mockup",
+                  "Bannière", "Flocage", "Photoshop", "Panneau", "Formation", "Accompagnement", "Affiche",
+                  "WordPress", "Communication", "Événementiel", "UI/UX", "IA", "Automatisation", "Firefly",
+                  "Media.io", "Voice maker.in", "Musicscreen", "Firefly", "Refonte", "Contenu éditorial",
+                  "1.fr", "Ubersuggest", "AnswerThePublic", "Google search console", "Screaming Frog",
+                  "Collaboration Sales", "CSM"
+                ].to_json
+              } do %>
 
-  <ul id="tag-suggestions" data-tag-autocomplete-target="suggestions" class="suggestions-list"></ul>
-</div>
+  <div class="filter-row">
+    <%= label_tag :tag, "Filtrer par tag", class: "filter-label" %>
+
+    <div class="autocomplete-wrapper">
+      <div class="tag-input-wrapper">
+        <%= text_field_tag :tag, params[:tag],
+              placeholder: "Commencez à taper...",
+              data: { tag_autocomplete_target: "input" },
+              autocomplete: "off",
+              class: "tag-input" %>
+
+        <button type="button"
+                class="clear-tag-input"
+                data-tag-autocomplete-target="clear"
+                aria-label="Effacer le champ">✕</button>
+      </div>
+
+      <ul id="tag-suggestions"
+          data-tag-autocomplete-target="suggestions"
+          class="suggestions-list"></ul>
+    </div>
+
+    <%= submit_tag "Filtrer", class: "button-filter" %>
+  </div>
+<% end %>

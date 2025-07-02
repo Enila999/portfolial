@@ -1,12 +1,15 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   include TagsHelper
 
   def new
     @project = Project.new
+    authorize @project
   end
 
   def create
     @project = Project.new(project_params)
+    authorize @project
 
     if @project.save
       redirect_to @project, notice: "The project was successfully created."
@@ -16,31 +19,36 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = Project.find_by!(slug: params[:id])
+    authorize @project
   end
 
   def index
-  @project = Project.new
-  @banners = Banner.all
+    @projects = policy_scope(Project)
+    @project = Project.new
+    @banners = Banner.all
 
-  tag_param = params[:tag].to_s.strip.downcase
+    tag_param = params[:tag].to_s.strip.downcase
 
-  if tag_param.present?
-    if category_tags_map.key?(tag_param)
-      tag_list = category_tags_map[tag_param]
-      @projects = Project.joins(:tags).where(tags: { name: tag_list }).distinct
+    if tag_param.present?
+      if category_tags_map.key?(tag_param)
+        tag_list = category_tags_map[tag_param]
+        @projects = Project.joins(:tags)
+                          .where("LOWER(tags.name) IN (?)", tag_list.map(&:downcase))
+                          .includes(:tags, :customer)
+                          .distinct
+      else
+        @projects = Project.joins(:tags)
+                          .where("LOWER(tags.name) = ?", tag_param)
+                          .includes(:tags, :customer)
+                          .distinct
+      end
     else
-      @projects = Project.joins(:tags)
-                         .where("LOWER(tags.name) = ?", tag_param)
-                         .distinct
+      @projects = Project.includes(:tags, :customer).all
     end
-  else
-    @projects = Project.all
+
+    @tags = Tag.all.pluck(:name)
   end
-
-  @tags = Tag.all.pluck(:name)
- end
-
 
   private
 
