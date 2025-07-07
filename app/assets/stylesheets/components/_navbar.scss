@@ -25,7 +25,7 @@
   position: fixed;
   width: 100%;
   top: 0;
-  overflow: hidden;
+  overflow: visible;
   z-index: 1000 !important;
   transition: background-color  0.4s ease-in-out;
   margin-left: 10%;
@@ -35,6 +35,21 @@
 .nav-link{
   font-weight: 600;
 }
+
+.nav-link-play {
+  transition: all 0.2s ease;
+}
+
+.nav-link-play:hover {
+  background-color: #fafafa;
+  padding: 4px 12px;
+  color: #cbbca0;
+  border-radius: 16px;
+  box-shadow: 0px 2px 0px rgba(158, 146, 125, 0.2);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
 
 #navbar-lewagon-colored {
   background-color: #cbbca0;
@@ -48,4 +63,44 @@
   #navbar-sticky {
     font-size: 14px;
   }
+}
+
+
+/*Menu Navbar*/
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  padding: 6px;
+  background-color: rgba(250, 250, 250, 0.2);
+}
+
+.custom-dropdown-menu {
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fafafa;
+  border: 1px solid #cbbca0;
+  list-style: none;
+  border-radius: 16px;
+  z-index: 1050;
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.custom-dropdown-menu:hover {
+  background-color: #cbbca0;
 }

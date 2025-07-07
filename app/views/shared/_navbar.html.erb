@@ -22,34 +22,32 @@
           <%= link_to "Projets", projects_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "À propos de moi", "#", class: "nav-link" %>
+          <%= link_to "À propos de moi", about_path, class: "nav-link" %>
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "Nouveau projet", new_project_path, class: "nav-link" %>
           </li>
         <% end %>
+        <li class="nav-item">
+          <li><%= link_to "Jouer", "#", class: "nav-link nav-link-play" %></li>
+        </li>
+
       </ul>
 
-      <ul class="navbar-nav ms-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item dropdown">
-            <a href="#" class="avatar nav-link dropdown-toggle" id="navbarDropdown"
-               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "PDP Blanc.png", class: "avatar", alt: "dropdown menu" %>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Mon profil", "#", class: "dropdown-item" %>
-              <%= link_to "Déconnexion", destroy_user_session_path,
-                          data: { turbo_method: :delete }, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
+      <div class="nav-item dropdown" data-controller="navbar" data-action="click@window->navbar#close">
+        <a href="javascript:void(0)" data-action="click->navbar#toggle">
+          <%= image_tag "PDP Blanc.png", class: "avatar", alt: "menu utilisateur" %>
+        </a>
+
+        <ul class="custom-dropdown-menu" data-navbar-target="menu">
+          <% if user_signed_in? %>
+            <li><%= link_to "Déconnexion", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
+          <% else %>
+            <li><%= link_to "Connexion", new_user_session_path, class: "dropdown-item" %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
