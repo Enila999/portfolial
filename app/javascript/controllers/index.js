@@ -10,5 +10,5 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 
-import TagAutocompleteController from "./tag_autocomplete_controller"
-application.register("tag-autocomplete", TagAutocompleteController)
+import NavbarController from "./navbar_controller"
+application.register("navbar", NavbarController)

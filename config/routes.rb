@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   get "projects", to: "projects#index"
   get "projects/:id", to: "projects#show"
-
+  get "/a-propos", to: "pages#about", as: :about
 
 end

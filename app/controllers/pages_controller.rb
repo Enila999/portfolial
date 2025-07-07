@@ -3,4 +3,7 @@ class PagesController < ApplicationController
     @featured_projects = Project.order("RANDOM()").limit(5)
     @icons = Icon.all
   end
+
+  def about
+  end
 end
