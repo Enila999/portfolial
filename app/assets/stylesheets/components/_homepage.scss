@@ -62,9 +62,9 @@
 /* Conteneur secondaire - Partie 2 */
 .presentation-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 40px 20px;
+  padding: 40px 0;
   margin-top: 0;
   padding-top: 10px;
 }
@@ -90,6 +90,9 @@
   color: #2b2a29;
   flex: 1;
   align-items: flex-start;
+  background-color: #cbbca0;
+  padding: 60px;
+  border-radius: 24px;
 }
 
 .text-block p {

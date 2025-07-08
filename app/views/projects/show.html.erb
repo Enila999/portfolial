@@ -24,6 +24,8 @@
           <span class="tag"><%= tag.name %></span>
         <% end %>
       </div>
+
+      <div class="bento-group">
         <div class="description-show">
           <%= image_tag @project.logo, alt: "Logo de #{@project.customer}", class: "logo-show" %>
           <div class="description-project">
@@ -36,6 +38,7 @@
             </div>
           <% end %></div>
         </div>
+      </div>
 
           <%= link_to "Retour sur les projets", projects_path, class: "discover-button" %>
     </div>
