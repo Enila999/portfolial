@@ -34,7 +34,8 @@ customers = {
   "Maison ADGÉ" => Customer.create!(name: "Maison ADGÉ"),
   "Al_ine" => Customer.create!(name: "Al_ine"),
   "Mais oui, Bien sûr !" => Customer.create!(name: "Mais oui, Bien sûr !"),
-  "olome" => Customer.create!(name: "olome")
+  "olome" => Customer.create!(name: "olome"),
+  "Buzz It" => Customer.create!(name: "Buzz It")
 }
 
 
@@ -137,6 +138,18 @@ p8 = Project.create!(
 
 attach_media(p8, "olome")
 
+p9 = Project.create!(
+  customer: Customer.find_by!(name: "Buzz It"),
+  description: "Dans le cadre d'une soirée blind test, j'ai eu l'idée de créer une application de buzzers pour rendre le jeu plus interactif et dynamique. Pour cela, j’ai conçu une maquette complète sur Figma, en combinant des éléments créés sur Canva. L’objectif : proposer une interface simple, accessible sur mobile, permettant aux participants de « buzzer » en temps réel.<br><br>
+  J’ai travaillé sur l’ergonomie de l’interface pour assurer une utilisation intuitive, avec un design coloré et ludique adapté à un usage en groupe. Cette maquette devait servir de base à un développement ultérieur de l’application, mais elle n’a finalement pas été codée.<br><br>
+  Ce projet reste une belle démonstration de ma capacité à transformer un besoin concret en prototype fonctionnel, avec une attention portée à l'expérience utilisateur et à la cohérence visuelle.<br><br>
+  <a href='https://alinegl218.wixsite.com/portfolial' class='discover-button-clair' target='_blank'>Voir la maquette</a>",
+  url_media: "https://alinegl218.wixsite.com/portfolial",
+  logo: "Buzz_it/Buzz it.png"
+)
+
+attach_media(p9, "buzit")
+
 tag_names = [
   "Accompagnement", "Affiche", "After Effect", "Bannière", "Canva",
   "Charte graphique", "Communication", "CSS", "Figma", "Flocage",
@@ -157,7 +170,8 @@ project_tags_map = {
   "Ni Sawa" => ["Logo", "Vidéo", "Mockup", "Bannière", "Flocage", "Photoshop", "Panneau", "Premier Pro", "Formation", "Accompagnement", "Affiche"],
   "Parole Citoyenne" => ["Site internet", "Logo", "Canva", "WordPress", "Figma", "Communication", "Événementiel", "Formation", "Accompagnement", "Référencement", "SEO", "UI/UX"],
   "Mais oui, Bien sûr !" => ["Maquette", "Figma", "Logo", "Charte graphique", "Canva", "Illustrator", "Media.io", "Voice maker.in", "Musicscreen", "Firefly" ],
-  "olome" => ["Refonte", "Hubspot", "Site internet", "JavaScript", "HTML", "CSS", "SEO", "Contenu éditorial", "Canva", "1.fr", "Ubersuggest", "AnswerThePublic", "Google search console", "Screaming Frog", "Collaboration Sales", "CSM", "UI/UX"]
+  "olome" => ["Refonte", "Hubspot", "Site internet", "JavaScript", "HTML", "CSS", "SEO", "Contenu éditorial", "Canva", "1.fr", "Ubersuggest", "AnswerThePublic", "Google search console", "Screaming Frog", "Collaboration Sales", "CSM", "UI/UX"],
+  "Buzz It" => ["Maquette", "Figma", "Canva", "UX", "UI", "Design UX"]
 }
 
 project_tags_map.each do |customer_name, tag_names|
