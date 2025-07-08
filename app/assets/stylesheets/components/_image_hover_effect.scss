@@ -116,6 +116,15 @@ p {
   transform: scale(1);
 }
 
+.section-col-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+
 /* Responsive Grid Layouts */
 
 @media (max-width: 1024px) {

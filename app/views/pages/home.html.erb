@@ -2,7 +2,7 @@
 <div class="parent" data-controller="random-delay" data-action="randomDelay#applyRandomDelays">
   <%# <div style="justify-content: center; display: flex"> %>
     <div class="text-container">
-      <h1 class="title animate-text">PortfoliAl</h1>
+      <h1 class="title" data-controller="animate-text">PortfoliAl</h1>
 
         <div class="image-wrapper">
         <%= image_tag "PDP Beige.png", class: "image-only-shadow" %>
@@ -10,7 +10,7 @@
       </div>
 
 
-  <div class="grid-head">
+  <div class="grid-head" data-controller="random-delay">
     <% (1..50).each do |i| %>
       <div class="image-container">
         <%= image_tag "PDP Beige plat.png", id:"img_#{i}", class: "superpose", 'data-random-delay-target': 'image' %>
@@ -47,27 +47,29 @@
 <div class="section-fluid-main">
   <div class="section-row">
     <% @featured_projects.each do |project| %>
-      <div class="section-col">
-        <div class="section">
-          <div class="section-in">
-            <%= image_tag "#{project.logo}", alt: project.customer, class: "project-logo" if project.logo.present? %>
+      <%= link_to project_path(project), class: "section-col-link" do %>
+        <div class="section-col">
+          <div class="section">
+            <div class="section-in">
+              <%= image_tag project.logo, alt: project.customer, class: "project-logo" if project.logo.present? %>
+            </div>
+          </div>
+          <div class="hover-text">
+            <h2><%= project.customer %></h2>
           </div>
         </div>
-      </div>
-      <div class="hover-text">
-        <h2><%= project.customer %></h2>
-      </div>
+      <% end %>
     <% end %>
 
-    <!-- 6ème carte : bouton découvrir -->
+    <!-- 6ᵉ carte : bouton découvrir -->
     <div class="section-col">
       <div class="section">
         <div class="section-in">
-            <%= link_to "Découvrir", projects_path, class: "discover-button-clair" %>
+          <%= link_to "Découvrir", projects_path, class: "discover-button-clair" %>
         </div>
       </div>
     </div>
-  </div>
+  </div> <!-- 👈 fermeture correcte de .section-row ici -->
 </div>
 
 
@@ -94,30 +96,6 @@
 
 
 <script>
- "use strict";
-
-  function animate_text() {
-    let delay = 100;
-    let delay_start = 300;
-
-    document.querySelectorAll(".animate-text").forEach(function (elem) {
-      const contents = elem.textContent.trim();
-      elem.textContent = "";
-      elem.style.visibility = 'visible';
-
-      contents.split("").forEach(function (letter, index) {
-        setTimeout(function () {
-          elem.textContent += letter;
-        }, delay_start + delay * index);
-      });
-
-      delay_start += delay * contents.length;
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", animate_text);
-  document.addEventListener("turbo:load", animate_text);
-
 document.addEventListener("DOMContentLoaded", function () {
   const rotatingImage = document.getElementById("rotating-image");
 

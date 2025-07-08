@@ -12,3 +12,6 @@ eagerLoadControllersFrom("controllers", application)
 
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
+
+import AnimateTextController from "./animate_text_controller"
+application.register("animate-text", AnimateTextController)
