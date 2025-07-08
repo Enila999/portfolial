@@ -18,77 +18,78 @@
     <% end %>
   </div>
 
- <div>
-    <h2 class="h2-text">Lorem ipsum odor amet, consectetuer adipiscing elit</h2>
-  </div>
-
-<div class="presentation-wrapper">
-  <div class="grid-pres">
-    <div class="text-block">
-      <p>
-        Quo quae quibusdam et distinctio doloribus sed ratione recusandae. Sit repellendus unde et recusandae quia ab quisquam porro repellat voluptas eum earum sunt est laudantium nihil vel explicabo veritatis
-      </p>
-      <a href="#ton-lien" class="discover-button">Découvrir</a>
+  <div class="container pre-footer">
+    <div>
+      <h2 class="h2-text">Lorem ipsum odor amet, consectetuer adipiscing elit</h2>
     </div>
 
+    <div class="presentation-wrapper">
+      <div class="grid-pres">
+        <div class="text-block">
+          <p>
+            Quo quae quibusdam et distinctio doloribus sed ratione recusandae. Sit repellendus unde et recusandae quia ab quisquam porro repellat voluptas eum earum sunt est laudantium nihil vel explicabo veritatis
+          </p>
+          <a href="#ton-lien" class="discover-button-clair">Découvrir</a>
+        </div>
+
     <div class="cards">
-  <% @icons.each do |icon| %>
-  <div class="card-category card-homepage"
-       style="background-image: url(<%= asset_path("icons/#{icon.image}") %>)">
-         <h3 class="icon-title"><%= icon.name.upcase %></h3>
-  </div>
-<% end %>
-</div>
+      <% @icons.each do |icon| %>
+      <div class="card-category card-homepage"
+          style="background-image: url(<%= asset_path("icons/#{icon.image}") %>)">
+            <h3 class="icon-title"><%= icon.name.upcase %></h3>
+      </div>
+      <% end %>
+    </div>
 
-   <%# <%= image_tag "PDP Beige.png", class: "rotating", id: "rotating-image" %>
+    <%# <%= image_tag "PDP Beige.png", class: "rotating", id: "rotating-image" %>
+    </div>
   </div>
-</div>
 
-<div class="section-fluid-main">
-  <div class="section-row">
-    <% @featured_projects.each do |project| %>
-      <%= link_to project_path(project), class: "section-col-link" do %>
+    <div class="section-fluid-main">
+      <div class="section-row">
+        <% @featured_projects.each do |project| %>
+          <%= link_to project_path(project), class: "section-col-link" do %>
+            <div class="section-col">
+              <div class="section">
+                <div class="section-in">
+                  <%= image_tag project.logo, alt: project.customer, class: "project-logo" if project.logo.present? %>
+                </div>
+              </div>
+              <div class="hover-text">
+                <h2><%= project.customer %></h2>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+        <!-- 6ᵉ carte : bouton découvrir -->
         <div class="section-col">
           <div class="section">
             <div class="section-in">
-              <%= image_tag project.logo, alt: project.customer, class: "project-logo" if project.logo.present? %>
+              <%= link_to "Découvrir", projects_path, class: "discover-button-clair" %>
             </div>
           </div>
-          <div class="hover-text">
-            <h2><%= project.customer %></h2>
-          </div>
         </div>
-      <% end %>
-    <% end %>
+      </div> <!-- 👈 fermeture correcte de .section-row ici -->
+    </div>
 
-    <!-- 6ᵉ carte : bouton découvrir -->
-    <div class="section-col">
-      <div class="section">
-        <div class="section-in">
-          <%= link_to "Découvrir", projects_path, class: "discover-button-clair" %>
+
+    <div class="presentation-wrapper">
+      <div class="grid-pres">
+        <div class="text-block">
+          <p>
+            Quo quae quibusdam et distinctio doloribus sed ratione recusandae. Sit repellendus unde et recusandae quia ab quisquam porro repellat voluptas eum earum sunt est laudantium nihil vel explicabo veritatis
+          </p>
+          <a href="#ton-lien" class="discover-button-clair">Découvrir</a>
         </div>
+
+        <div>
+          <%= image_tag "PDP Beige.png" %>
+        </div>
+
       </div>
     </div>
-  </div> <!-- 👈 fermeture correcte de .section-row ici -->
-</div>
-
-
-<div class="presentation-wrapper">
-  <div class="grid-pres">
-    <div class="text-block">
-      <p>
-        Quo quae quibusdam et distinctio doloribus sed ratione recusandae. Sit repellendus unde et recusandae quia ab quisquam porro repellat voluptas eum earum sunt est laudantium nihil vel explicabo veritatis
-      </p>
-      <a href="#ton-lien" class="discover-button">Découvrir</a>
-    </div>
-
-    <div>
-      <%= image_tag "PDP Beige.png" %>
-    </div>
-
   </div>
-</div>
-
 </div>
 
 

@@ -171,7 +171,7 @@ project_tags_map = {
   "Parole Citoyenne" => ["Site internet", "Logo", "Canva", "WordPress", "Figma", "Communication", "Événementiel", "Formation", "Accompagnement", "Référencement", "SEO", "UI/UX"],
   "Mais oui, Bien sûr !" => ["Maquette", "Figma", "Logo", "Charte graphique", "Canva", "Illustrator", "Media.io", "Voice maker.in", "Musicscreen", "Firefly" ],
   "olome" => ["Refonte", "Hubspot", "Site internet", "JavaScript", "HTML", "CSS", "SEO", "Contenu éditorial", "Canva", "1.fr", "Ubersuggest", "AnswerThePublic", "Google search console", "Screaming Frog", "Collaboration Sales", "CSM", "UI/UX"],
-  "Buzz It" => ["Maquette", "Figma", "Canva", "UX", "UI", "Design UX"]
+  "Buzz It" => ["Maquette", "Figma", "Canva", "Charte graphique", "UX/UI", "Design UX"]
 }
 
 project_tags_map.each do |customer_name, tag_names|

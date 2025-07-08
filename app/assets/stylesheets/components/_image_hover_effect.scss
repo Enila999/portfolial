@@ -24,7 +24,7 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  padding: 40px 160px;
+  padding: 40px;
   background-color: #cbbca0;
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
@@ -32,6 +32,7 @@ p {
   line-height: 1.7;
   color: #fff;
   width: 100%;
+  border-radius: 16px;
 }
 
 .section-row {
