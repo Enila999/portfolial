@@ -15,12 +15,12 @@
               } do %>
 
   <div class="filter-row">
-    <%= label_tag :tag, "Filtrer par tag", class: "filter-label" %>
+    <%= label_tag :tag, " ", class: "filter-label" %>
 
     <div class="autocomplete-wrapper">
       <div class="tag-input-wrapper">
         <%= text_field_tag :tag, params[:tag],
-              placeholder: "Commencez à taper...",
+              placeholder: "Filtrez par tag ...",
               data: { tag_autocomplete_target: "input" },
               autocomplete: "off",
               class: "tag-input" %>

@@ -93,7 +93,18 @@
   background-color: #cbbca0;
   padding: 60px;
   border-radius: 24px;
+  margin-top: 40px;
 }
+
+.text-block:hover {
+  transform: translateY(-4px);
+}
+
+.text-block h2 {
+  font-weight: bold;
+  color: #fafafa;
+}
+
 
 .text-block p {
   font-size: 1.1rem;

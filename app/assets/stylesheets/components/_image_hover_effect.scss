@@ -30,7 +30,7 @@ p {
   font-weight: 400;
   font-size: 15px;
   line-height: 1.7;
-  color: #fff;
+  color: #2b2a29;
   width: 100%;
   border-radius: 16px;
 }
@@ -45,6 +45,7 @@ p {
 }
 
 .section-col {
+  position: relative;
   transition: opacity 250ms linear;
   display: flex;
   justify-content: center;
@@ -85,6 +86,8 @@ p {
   border-radius: 16px;
 }
 
+/** effet négatif**/
+
 .hover-text {
   position: fixed;
   top: 0;
@@ -92,14 +95,15 @@ p {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 100;
+  z-index: 9999;
   pointer-events: none;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  mix-blend-mode: difference;
+  mix-blend-mode: difference!important; /**effet négatif!**/
 }
+
 
 .hover-text h2 {
   font-family: 'Raleway', sans-serif;
@@ -107,12 +111,11 @@ p {
   font-size: 8vw;
   line-height: 1;
   color: #fff;
-  opacity: 0;
-  transform: scale(0.8);
+  opacity: 1;
   transition: transform 250ms linear, opacity 250ms ease;
 }
 
-.section-col:hover + .hover-text h2 {
+.section-col:hover .hover-text h2 {
   opacity: 1;
   transform: scale(1);
 }
