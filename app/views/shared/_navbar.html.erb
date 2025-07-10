@@ -24,6 +24,9 @@
         <li class="nav-item">
           <%= link_to "À propos de moi", about_path, class: "nav-link" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "Contact", contacts_new_path, class: "nav-link" %>
+        </li>
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "Nouveau projet", new_project_path, class: "nav-link" %>

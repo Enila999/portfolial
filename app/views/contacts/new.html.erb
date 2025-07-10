@@ -1,0 +1,43 @@
+<div class="parent">
+  <div class="pre-banner">
+    <div class="banner-background">
+      <div class="top-banner">
+        <div class="banner-img-left">
+          <%= image_tag "Pattern.png" %>
+        </div>
+
+        <div class="side-banner">
+          <h1 class="title-page">Formulaire</h1>
+        </div>
+
+        <div class="side-banner-img">
+          <%= image_tag "Pattern.png" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container pre-footer">
+    <div class="sub-project-new">
+      <div class= "sub-description-new">
+         <%= form_with model: @contact, url: contacts_path, local: true do |f| %>
+          <div class="mb-3">
+            <%= f.label :email, "E-mail", class: "form-label" %>
+            <%= f.email_field :email, class: "form-control", placeholder: "prenom.nom@exemple.com" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :message, "Commentaire", class: "form-label" %>
+            <%= f.text_area :message, class: "form-control", rows: 3, placeholder: "Posez vos questions" %>
+          </div>
+
+          <%= f.submit "Envoyer", class: "discover-button-clair" %>
+        <% end %>
+
+        <% if notice %>
+          <p class="thank-you-message"><%= notice %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,15 +20,18 @@
 
   <div class="container pre-footer">
     <div>
-      <h2 class="h2-text">Lorem ipsum odor amet, consectetuer adipiscing elit</h2>
+      <h2 class="h2-text">Un bout de mon parcours, ma façon de voir le digital : "simple, utile, humain"</h2>
     </div>
 
     <div class="presentation-wrapper">
       <div class="grid-pres">
         <div class="text-block">
-          <p>
-            Quo quae quibusdam et distinctio doloribus sed ratione recusandae. Sit repellendus unde et recusandae quia ab quisquam porro repellat voluptas eum earum sunt est laudantium nihil vel explicabo veritatis
-          </p>
+        <h2>Des outils pensés pour vos besoins, pas seulement pour briller dans les CV </h2>
+          <br>
+            Figma, Hubspot, WordPress, Webflow, Rails, Photoshop, After Effects... Ça fait beaucoup de noms, mais promis, ils servent tous à quelque chose.
+          </br>
+          <br> J’adapte les solutions aux besoins : site internet, acompagnement client, CRM ou dashboard. Mon but est de simplifier la complexité et rendre vos outils vraiment utiles pour chaque personne.
+          </br>
           <a href="#ton-lien" class="discover-button-clair">Découvrir</a>
         </div>
 
@@ -45,18 +48,20 @@
     </div>
   </div>
 
-    <div class="section-fluid-main">
+    <div class="section-fluid-main" data-controller="hover-text">
       <div class="section-row">
         <% @featured_projects.each do |project| %>
-          <%= link_to project_path(project), class: "section-col-link" do %>
+          <%= link_to project_path(project),
+                      class: "section-col-link",
+                      data: {
+                        hover_text_target: "card",
+                        customer: project.customer.to_s
+                      } do %>
             <div class="section-col">
               <div class="section">
                 <div class="section-in">
                   <%= image_tag project.logo, alt: project.customer, class: "project-logo" if project.logo.present? %>
                 </div>
-              </div>
-              <div class="hover-text">
-                <h2><%= project.customer %></h2>
               </div>
             </div>
           <% end %>
@@ -70,17 +75,25 @@
             </div>
           </div>
         </div>
-      </div> <!-- 👈 fermeture correcte de .section-row ici -->
-    </div>
+      </div>
 
+      <!-- Texte de hover global + effet négatif -->
+      <div class="hover-text">
+        <h2 data-hover-text-target="title"></h2>
+      </div>
+    </div>
 
     <div class="presentation-wrapper">
       <div class="grid-pres">
         <div class="text-block">
-          <p>
-            Quo quae quibusdam et distinctio doloribus sed ratione recusandae. Sit repellendus unde et recusandae quia ab quisquam porro repellat voluptas eum earum sunt est laudantium nihil vel explicabo veritatis
-          </p>
-          <a href="#ton-lien" class="discover-button-clair">Découvrir</a>
+        <h2>Mon approche pour faire avancer vos projets</h2>
+          <br>
+            Moi c’est Aline, passionnée par les projets digitaux qui allient sens et efficacité. Solution maker dans l’âme, je navigue entre marketing, design et tech pour transformer les idées en actions concrètes.
+          </br>
+          <br>
+            J’avance avec curiosité, méthode et pragmatisme, sans chercher à faire « comme tout le monde », mais à proposer ce qui marche pour vous.
+          </br>
+          <%= link_to "Découvrir", about_path, class: "discover-button-clair" %>
         </div>
 
         <div>

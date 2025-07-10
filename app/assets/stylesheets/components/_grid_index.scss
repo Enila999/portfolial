@@ -22,6 +22,10 @@
   min-height: 420px;
 }
 
+.card:hover {
+  transform: translateY(-4px);
+}
+
 .card-img-top-index {
   display: block;
   width: 100%;

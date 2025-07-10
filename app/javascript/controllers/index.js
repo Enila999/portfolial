@@ -15,3 +15,6 @@ application.register("navbar", NavbarController)
 
 import AnimateTextController from "./animate_text_controller"
 application.register("animate-text", AnimateTextController)
+
+import HoverTextController from "./hover_text_home_controller"
+application.register("hover-text", HoverTextController)

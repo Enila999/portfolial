@@ -1,0 +1,38 @@
+<div class="parent">
+  <div class="pre-banner">
+    <div class="banner-background">
+      <div class="top-banner">
+        <div class="banner-img-left">
+          <%= image_tag "Pattern.png" %>
+        </div>
+
+        <div class="side-banner">
+          <h1 class="title-page">Contact</h1>
+        </div>
+
+        <div class="side-banner-img">
+          <%= image_tag "Pattern.png" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container pre-footer">
+    <div class="sub-project-new">
+      <div class= "sub-description-new">
+        <h2>Formulaire</h2>
+
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="prenom.nom@exemple.com">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Commentaire</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Posez vos questions"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <%= link_to "Envoyer", projects_path, class: "discover-button" %>
+  </div>
+</div>
