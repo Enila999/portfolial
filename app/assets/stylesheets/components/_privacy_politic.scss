@@ -1,0 +1,24 @@
+.privacy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.privacy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.privacy-bullet {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.privacy-policy {
+  margin-top: 8%;
+}

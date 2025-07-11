@@ -9,4 +9,12 @@ class PagesController < ApplicationController
 
   def contact
   end
+
+  def privacy
+
+  end
+
+  def legal
+
+  end
 end
