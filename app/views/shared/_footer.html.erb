@@ -1,13 +1,38 @@
 <div class="footer">
-  <div class="footer-links">
-    <a href="https://github.com/Enila999"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/aline-gomes-lopes-%F0%9F%8C%9F-614424123/"><i class="fab fa-linkedin"></i></a>
-    <%= link_to "/", class: "navbar-brand" do %>
-      <%= image_tag "Al_ine Logo 3.png", alt: "Logo Aline", class: "footer-logo" %>
-    <% end %>
+  <div class="footer-top">
+    <div class="footer-icons">
+      <a href="https://github.com/Enila999"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/aline-gomes-lopes-%F0%9F%8C%9F-614424123/"><i class="fab fa-linkedin"></i></a>
+      <%= link_to "/", class: "navbar-brand" do %>
+        <%= image_tag "Al_ine Logo 3.png", alt: "Logo Aline", class: "footer-logo" %>
+      <% end %>
+    </div>
+
+    <div class="footer-menu">
+      <div class="footer-column">
+        <%= link_to "Accueil", root_path, class: "link-menu-footer" %>
+        <%= link_to "Projets", projects_path, class: "link-menu-footer" %>
+      </div>
+      <div class="footer-column">
+        <%= link_to "À propos", about_path, class: "link-menu-footer" %>
+        <%= link_to "Contact", contacts_new_path, class: "link-menu-footer" %>
+      </div>
+      <div class="footer-column">
+        <%= link_to "Politique de confidentialité", privacy_path_path, class: "link-menu-footer" %>
+        <%= link_to "Mentions légales", legal_path_path, class: "link-menu-footer" %>
+      </div>
+      <% if user_signed_in? %>
+        <div class="footer-column">
+          <%= link_to "Nouveau projet", new_project_path, class: "link-menu-footer" %>
+        </div>
+      <% end %>
+      <div class="footer-column">
+        <%= link_to "Jouer", "#", class: "nav-link nav-link-play" %>
+      </div>
+    </div>
   </div>
 
-  <div class="footer-copyright">
-  All made with <i class="fas fa-heart"></i> by Al_ine - 2025
+  <div class="footer-bottom">
+    <p>All made with <i class="fas fa-heart"></i> by Al_ine — 2025</p>
   </div>
 </div>

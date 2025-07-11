@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   get "projects/:id", to: "projects#show"
   get "/a-propos", to: "pages#about", as: :about
   get "contact", to: "pages#contact", as: :contact
+  get "/politique-de-confidentialite", to: "pages#privacy", as: :privacy_path
+  get "/mentions-legales", to: "pages#legal", as: :legal_path
 end
