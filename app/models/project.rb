@@ -3,7 +3,9 @@ class Project < ApplicationRecord
   has_many :project_tags
   has_many :tags, through: :project_tags
 
-  belongs_to :customer
+  belongs_to :customer, optional: true
+  has_one_attached  :logo
+  has_many_attached :media
 
   before_validation :generate_slug, if: -> { slug.blank? || will_save_change_to_customer_id? }
 

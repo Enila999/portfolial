@@ -62,8 +62,7 @@
   transition: color 200ms ease;
 }
 
-.link-menu-footer::after,
-.nav-link-play::after {
+.link-menu-footer::after {
   content: "";
   position: absolute;
   left: 0;
@@ -72,6 +71,17 @@
   height: 1px;
   background: #5c4a2f;
   transition: width 200ms ease;
+}
+
+.nav-link-play::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 1px;
+  background: #5c4a2f;
+  transition: width 200ms ease;
+  text-decoration: none;
 }
 
 .link-menu-footer:hover::after,

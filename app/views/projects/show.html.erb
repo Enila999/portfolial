@@ -1,15 +1,14 @@
 <div class="parent">
+  <!-- Banner -->
   <div class="pre-banner">
     <div class="banner-background">
       <div class="top-banner">
         <div class="banner-img-left">
           <%= image_tag "Pattern.png" %>
         </div>
-
         <div class="side-banner">
           <h1 class="title-page"><%= @project.customer %></h1>
         </div>
-
         <div class="side-banner-img">
           <%= image_tag "Pattern.png" %>
         </div>
@@ -19,28 +18,141 @@
 
   <div class="container parent">
     <div class="show-project">
+
+      <!-- Tags -->
       <div class="tags">
         <% @project.tags.each do |tag| %>
           <span class="tag"><%= tag.name %></span>
         <% end %>
       </div>
 
-      <div class="bento-group">
+      <!-- Logo + Description -->
+      <div class="bento-group-show">
         <div class="description-show">
-          <%= image_tag @project.logo, alt: "Logo de #{@project.customer}", class: "logo-show" %>
-          <div class="description-project">
-          <% @project.description.split(/Projet \d+ /).reject(&:blank?).each_with_index do |part, index| %>
-            <div class="sub-project">
-              <div class= "sub-description">
-                <h3 class="sub-title-project">Projet <%= index + 1 %> </h3>
-                <p><%= simple_format(part.strip) %></p>
-              </div>
-            </div>
-          <% end %></div>
+          <div class="text-bg">
+            <%= image_tag url_for(@project.logo),
+                          alt: "Logo de #{@project.customer}",
+                          class: "logo-show" %>
+
+            <% @project.description
+                .split(/Projet \d+ /)
+                .reject(&:blank?)
+                .each_with_index do |part, idx| %>
+              <section class="sub-project">
+                <h3>Projet <%= idx + 1 %></h3>
+                <%= simple_format(part.strip) %>
+              </section>
+            <% end %>
+          </div>
         </div>
       </div>
 
-          <%= link_to "Retour sur les projets", projects_path, class: "discover-button" %>
+      <%# Préparation des medias triés %>
+      <% subfolders = @project.media
+           .select   { |m| m.blob.metadata["subfolder"].present? }
+           .group_by { |m| m.blob.metadata["subfolder"] } %>
+      <% root_medias = @project.media
+           .reject { |m| m.blob.metadata["subfolder"].present? } %>
+
+
+      <!-- BENTO GRID pour médias racine -->
+      <div class="bento-group-show" data-controller="lightbox">
+        <div class="bento-projects">
+          <div class="media-grid">
+            <% root_medias.each_with_index do |media, i| %>
+              <% url = url_for(media) %>
+              <div class="media-item">
+                <% if media.video? %>
+                  <video src="<%= url %>"
+                         controls
+                         class="bento-media"
+                         data-action="click->lightbox#open"
+                         data-lightbox-src-value="<%= url %>">
+                  </video>
+                <% else %>
+                  <a href="#"
+                     data-action="click->lightbox#open"
+                     data-lightbox-src-value="<%= url %>">
+                    <%= image_tag url, class: "bento-media" %>
+                  </a>
+                <% end %>
+              </div>
+            <% end %>
+
+                  <!-- CAROUSELS UNIQUEMENT si sous-dossiers existent -->
+      <% if subfolders.any? %>
+        <% subfolders.each do |sub, medias| %>
+          <div class="carousel-wrapper mb-5">
+            <h2 class="mb-3"><%= sub %></h2>
+
+            <div id="carousel-<%= sub.parameterize %>"
+                 class="carousel slide"
+                 data-bs-ride="carousel">
+
+              <div class="carousel-indicators">
+                <% medias.each_index do |idx| %>
+                  <button type="button"
+                          data-bs-target="#carousel-<%= sub.parameterize %>"
+                          data-bs-slide-to="<%= idx %>"
+                          class="<%= 'active' if idx.zero? %>"
+                          aria-current="<%= 'true' if idx.zero? %>"
+                          aria-label="Slide <%= idx + 1 %>">
+                  </button>
+                <% end %>
+              </div>
+
+              <div class="carousel-inner">
+                <% medias.each_with_index do |media, i| %>
+                  <% url = url_for(media) %>
+                  <div class="carousel-item <%= 'active' if i.zero? %>">
+                    <% if media.video? %>
+                      <video src="<%= url %>"
+                             controls
+                             class="d-block w-100 carousel-img"></video>
+                    <% else %>
+                      <%= image_tag url,
+                                    class: "d-block w-100 carousel-img" %>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+
+              <button class="carousel-control-prev"
+                      type="button"
+                      data-bs-target="#carousel-<%= sub.parameterize %>"
+                      data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Précédent</span>
+              </button>
+              <button class="carousel-control-next"
+                      type="button"
+                      data-bs-target="#carousel-<%= sub.parameterize %>"
+                      data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Suivant</span>
+              </button>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+          </div>
+        </div>
+
+        <!-- Lightbox Modal -->
+        <div data-lightbox-target="modal" class="lightbox-modal">
+          <span data-action="click->lightbox#close"
+                class="lightbox-close">&times;</span>
+          <img data-lightbox-target="image"
+               class="lightbox-content"
+               src="" alt="Preview"/>
+        </div>
+      </div>
+
+      <!-- Back Link -->
+      <%= link_to "Retour sur les projets",
+                  projects_path,
+                  class: "discover-button mt-4" %>
     </div>
   </div>
 </div>

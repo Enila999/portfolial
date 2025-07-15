@@ -8,147 +8,193 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-def attach_media(project, base_name, limit: 3, max_files: nil)
-  dir = Rails.root.join("db/seeds/assets")
-  files = Dir.glob("#{dir}/#{base_name}_*").first(max_files || limit)
+# db/seeds.rb
 
-  files = files.sample(limit) if max_files && files.size > limit
-
-  project.media_files.attach(
-    files.map do |path|
-      { io: File.open(path), filename: File.basename(path) }
-    end
-  )
-end
+require "marcel"
 
 ProjectTag.destroy_all
 Tag.destroy_all
 Project.destroy_all
 Customer.destroy_all
 
-customers = {
-  "Parole Citoyenne" => Customer.create!(name: "Parole Citoyenne"),
-  "Ni Sawa" => Customer.create!(name: "Ni Sawa"),
-  "Braids_Maria" => Customer.create!(name: "Braids_Maria"),
-  "Sookee" => Customer.create!(name: "Sookee"),
-  "Maison ADGÉ" => Customer.create!(name: "Maison ADGÉ"),
-  "Al_ine" => Customer.create!(name: "Al_ine"),
-  "Mais oui, Bien sûr !" => Customer.create!(name: "Mais oui, Bien sûr !"),
-  "olome" => Customer.create!(name: "olome"),
-  "Buzz It" => Customer.create!(name: "Buzz It")
-}
+customer_names = [
+  "Parole Citoyenne",
+  "Ni Sawa",
+  "Braids_Maria",
+  "Sookee",
+  "Maison ADGÉ",
+  "Al_ine",
+  "Mais oui, Bien sûr !",
+  "olome",
+  "Buzz It"
+]
 
+customers = customer_names.map { |name| [name, Customer.create!(name: name)] }.to_h
+
+# ─── Helper attach_media ───────────────────────────────────────────────────
+def attach_media(project, folder)
+  base_path = Rails.root.join("db/seeds/assets", folder)
+  Dir.glob("#{base_path}/**/*").sort.each do |file_path|
+    next unless File.file?(file_path)
+
+    # Extrait le sous-dossier relatif
+    rel_dir = Pathname(file_path)
+                .dirname
+                .relative_path_from(base_path)
+                .to_s
+    metadata = {}
+    metadata[:subfolder] = rel_dir if rel_dir.present? && rel_dir != "."
+
+    project.media.attach(
+      io:           File.open(file_path),
+      filename:     File.basename(file_path),
+      content_type: Marcel::MimeType.for(Pathname.new(file_path)),
+      metadata:     metadata
+    )
+  end
+end
+
+Project.find_each do |proj|
+  attach_media(proj, proj.customer.name)
+end
 
 p1 = Project.create!(
-  customer: Customer.find_by!(name:"Parole Citoyenne"),
-  description: "
-Projet 1 Conférence Débat
-
-Avec des partenaires de la scène Lilloise, Parole Citoyenne organise une conférence qui accueille un imminent ancien diplomate russo-ukrainien, Vladimir FEDEROVSKI.
-
-   Refonte du Logo de Parole Citoyenne
-
-   Création d'un mini site pour présenter l'invité ​
-
-   Création de visuels
-
-   Mise en place de la communication de l'événement
-
-​​
-
-Contrainte
-
-Temps limité avec moins de 2 semaines pour communiquer efficacement sur l'événement.​
-
-
-
-Projet 2 Refonte de site internet
-
-Mettre au goût du jour un site internet qui ne l'avait pas été depuis 2016.
-
-
-
-Projet 3 Conférence Débat
-
-Dans le cadre d’un événement organisé par Parole Citoyenne sur la réindustrialisation en France, j’ai été en charge de la communication visuelle. J’ai réalisé l’affiche de promotion et contribué à valoriser cet échange avec Olivier Lluansi, expert en politique industrielle.",
-  url_media: "https://alinegl218.wixsite.com/portfolial",
-  logo: "Parole_Citoyenne/Logo Parole Citoyenne.png"
+  customer:   customers["Parole Citoyenne"],
+  description: <<~HTML
+    Projet 1 Conférence Débat<br>
+    Avec des partenaires de la scène Lilloise, Parole Citoyenne organise une conférence
+    qui accueille un ancien diplomate russo-ukrainien, Vladimir FEDEROVSKI.
+    Refonte du logo de Parole Citoyenne
+    Création d'un mini site pour présenter l'invité
+    Création de visuels
+    Mise en place de la communication de l'événement
+    Contrainte : temps limité (moins de 2 semaines).<br><br>
+    Projet 2 Refonte de site internet : mise au goût du jour d’un site inactif depuis 2016.<br><br>
+    Projet 3 Conférence Débat : communication visuelle pour un débat sur la réindustrialisation
+    avec Olivier Lluansi, expert en politique industrielle.<br>
+    <a href="https://parolecitoyenne.eu/" class="discover-button-clair" target="_blank">Voir le site</a>
+  HTML
 )
-attach_media(p1, "parole_citoyenne")
+p1.logo.attach(
+  io:           File.open(Rails.root.join("db", "seeds", "assets", "Parole_Citoyenne", "Logo Parole Citoyenne.png")),
+  filename:     "Logo Parole Citoyenne.png",
+  content_type: "image/png"
+)
+attach_media(p1, "Parole_Citoyenne")
 
 p2 = Project.create!(
-  customer: Customer.find_by!(name: "Ni Sawa"),
-  description: "Création d'identité visuelle complète pour le lancement d’un Hôtel Bar Restaurant à Brazzaville. Logos, affiches, panneaux, tee-shirts et motifs culturels.",
-  url_media: "https://alinegl218.wixsite.com/portfolial",
-  logo: "Ni Sawa/Ni Sawa-v10.png"
+  customer:   customers["Ni Sawa"],
+  description: <<~HTML
+    Création d'identité visuelle complète pour le lancement d’un Hôtel Bar Restaurant à Brazzaville.
+    Logos, affiches, panneaux, tee-shirts et motifs culturels.
+  HTML
 )
-attach_media(p2, "ni_sawa", limit: 4, max_files: 6)
+p2.logo.attach(
+  io:           File.open(Rails.root.join("db", "seeds", "assets", "Ni Sawa", "Ni Sawa-v10.png")),
+  filename:     "Ni Sawa-v10.png",
+  content_type: "image/png"
+)
+attach_media(p2, "Ni Sawa")
+
 
 p3 = Project.create!(
-  customer: Customer.find_by!(name: "Braids_Maria"),
-  description: "Refonte du logo et création d’une vidéo événementielle à partir de posts Instagram.",
-  url_media: "https://alinegl218.wixsite.com/portfolial",
-  logo: "Braids_Maria/Braids_Maria.png"
+  customer:   customers["Braids_Maria"],
+  description: "Refonte du logo et création d’une vidéo événementielle à partir de posts Instagram."
 )
-attach_media(p3, "braids_maria")
+p3.logo.attach(
+  io:           File.open(Rails.root.join("db", "seeds", "assets", "Braids_Maria", "Braids_Maria.png")),
+  filename:     "Braids_Maria.png",
+  content_type: "image/png"
+)
+attach_media(p3, "Braids_Maria")
 
 
 p4 = Project.create!(
-  customer: Customer.find_by!(name: "Sookee"),
-  description: "Création de visuels et vidéo pour le lancement d’un service de mise en relation autour de la coiffure texturée à domicile. Création de vidéo de présentation, de plaquette, de posts instagram. Stratégie de lancement.",
-  url_media: "https://alinegl218.wixsite.com/portfolial",
-  logo: "Sookee/Logo Sookee SF.png"
+  customer:   customers["Sookee"],
+  description: <<~HTML
+    Création de visuels et vidéo pour le lancement d’un service de mise en relation
+    autour de la coiffure texturée à domicile.<br>
+    Vidéo de présentation, plaquette, posts Instagram, stratégie de lancement.
+  HTML
 )
-attach_media(p4, "sookee")
+p4.logo.attach(
+  io:           File.open(Rails.root.join("db", "seeds", "assets", "Sookee", "Logo Sookee SF.png")),
+  filename:     "Logo Sookee SF.png",
+  content_type: "image/png"
+)
+attach_media(p4, "Sookee")
 
 p5 = Project.create!(
-  customer: Customer.find_by!(name: "Maison ADGÉ"),
-  description: "Refonte du site e-commerce, optimisation SEO, conseil client, et création d’une charte graphique pour une marque de kimonos et pyjamas en wax.",
-  url_media: "https://alinegl218.wixsite.com/portfolial",
-  logo: "Maison_ADGE/Logo Maison ADGE.png"
+  customer:   customers["Maison ADGÉ"],
+  description: "Refonte du site e-commerce, optimisation SEO, conseil client et création d’une charte graphique."
 )
-attach_media(p5, "maison_adge")
+p5.logo.attach(
+  io:           File.open(Rails.root.join("db", "seeds", "assets", "Maison_ADGE", "Logo Maison ADGE.png")),
+  filename:     "Logo Maison ADGE.png",
+  content_type: "image/png"
+)
+attach_media(p5, "Maison_ADGE")
 
 p6 = Project.create!(
-  customer: Customer.find_by!(name: "Al_ine"),
-  description: "Refonte du PortfoliAl créé initialement sur Wix dans un soucis de temps. Création de Charte graphique avec un personnal branding. Refonte entièrement codée sur Ruby on Rails. Site entièrement personnalisé à l'image du client.",
-  url_media: "https://alinegl218.wixsite.com/portfolial",
-  logo: "Al_ine/Al_ine Logo.png"
+  customer:   customers["Al_ine"],
+  description: <<~HTML
+    Refonte du PortfoliAl créé initialement sur Wix dans un souci de temps.<br>
+    Création de charte graphique et personal branding.<br>
+    Refonte entièrement codée sur Ruby on Rails.<br>
+    Site entièrement personnalisé à l'image du client.
+  HTML
+)
+p6.logo.attach(
+  io:           File.open(Rails.root.join("db", "seeds", "assets", "Al_ine", "Al_ine Logo.png")),
+  filename:     "Al_ine Logo.png",
+  content_type: "image/png"
 )
 attach_media(p6, "Al_ine")
 
 p7 = Project.create!(
-  customer: Customer.find_by!(name: "Mais oui, Bien sûr !"),
-  description: "Jeu interactif entièrement créé sur Figma. Le projet est né d'une volonté de développer mes connaissances sur Figma. Et pourquoi pas un Jeu ? Grâce à des flow optimisé, j'ai pu créer un jeu qui donne l'illusion d'avoir créer d'une application alors qu'ile ne s'agit que d'une maquette.
-  <a href='https://www.figma.com/proto/98HOISywEbnlnRSgMdENlf/Mais-oui--Bien-s%C3%BBr--?node-id=365-4257&p=f&t=kLMYlKVXDNbiNaNG-1&scaling=scale-down&content-scaling=fixed&page-id=121%3A10662&starting-point-node-id=365%3A4257' class='discover-button-clair' target='_blank'>Jouer</a>",
-  url_media: "https://alinegl218.wixsite.com/portfolial",
-  logo: "MOBS/MOBS!.png"
+  customer:   customers["Mais oui, Bien sûr !"],
+  description: <<~HTML
+    Jeu interactif sur Figma, mimant une appli complète.<br>
+    <a href="https://www.figma.com/proto/…"
+       class="discover-button-clair" target="_blank">Jouer</a>
+  HTML
+)
+p7.logo.attach(
+  io:           File.open(Rails.root.join("db", "seeds", "assets", "MOBS", "MOBS!.png")),
+  filename:     "MOBS!.png",
+  content_type: "image/png"
 )
 attach_media(p7, "MOBS")
 
 p8 = Project.create!(
-  customer: Customer.find_by!(name: "olome"),
-  description: "J’ai mené la refonte complète du site olome, une solution SaaS au service des entreprises industrielles, conçue pour garantir la continuité numérique et assurer la traçabilité des données.<br><br>
-  J’ai commencé par un audit technique et éditorial qui a mis en lumière la coexistence de plusieurs versions du site, générant un grand nombre de pages orphelines. J’ai ensuite reconstruit entièrement le site sur Hubspot, tout en intégrant du HTML, du CSS et du JavaScript pour dépasser les limites de la plateforme.<br><br>
-  J’ai rédigé l’intégralité des contenus, en étroite collaboration avec les équipes Sales et CSM, afin d’assurer un discours clair, précis et fidèle aux enjeux métier. J’ai commencé à structurer les bases du référencement naturel (balises, arborescence, cohérence éditoriale) pour améliorer la visibilité du site. Une version anglaise était en cours de finalisation au moment de la fin de mission.<br><br>
-  <a href='https://www.olome.io/fr-fr' class='discover-button-clair' target='_blank'>Voir le site</a>",
-  url_media: "https://alinegl218.wixsite.com/portfolial",
-  logo: "olome/Logo olome.png"
+  customer:   customers["olome"],
+  description: <<~HTML
+    Refonte complète du site SaaS Olome, audit, rédaction, intégration Hubspot,
+    SEO de base, version anglaise en cours.<br>
+    <a href="https://www.olome.io/fr-fr" class="discover-button-clair" target="_blank">Voir le site</a>
+  HTML
 )
-
+p8.logo.attach(
+  io:           File.open(Rails.root.join("db", "seeds", "assets", "olome", "Logo olome.png")),
+  filename:     "Logo olome.png",
+  content_type: "image/png"
+)
 attach_media(p8, "olome")
 
 p9 = Project.create!(
-  customer: Customer.find_by!(name: "Buzz It"),
-  description: "Dans le cadre d'une soirée blind test, j'ai eu l'idée de créer une application de buzzers pour rendre le jeu plus interactif et dynamique. Pour cela, j’ai conçu une maquette complète sur Figma, en combinant des éléments créés sur Canva. L’objectif : proposer une interface simple, accessible sur mobile, permettant aux participants de « buzzer » en temps réel.<br><br>
-  J’ai travaillé sur l’ergonomie de l’interface pour assurer une utilisation intuitive, avec un design coloré et ludique adapté à un usage en groupe. Cette maquette devait servir de base à un développement ultérieur de l’application, mais elle n’a finalement pas été codée.<br><br>
-  Ce projet reste une belle démonstration de ma capacité à transformer un besoin concret en prototype fonctionnel, avec une attention portée à l'expérience utilisateur et à la cohérence visuelle.<br><br>
-  <a href='https://alinegl218.wixsite.com/portfolial' class='discover-button-clair' target='_blank'>Voir la maquette</a>",
-  url_media: "https://alinegl218.wixsite.com/portfolial",
-  logo: "Buzz_it/Buzz it.png"
+  customer:   customers["Buzz It"],
+  description: <<~HTML
+    Maquette d’une appli de buzzer en live pour blind-test, conçue sur Figma/Canva.<br>
+    <a href="https://alinegl218.wixsite.com/portfolial"
+       class="discover-button-clair" target="_blank">Voir la maquette</a>
+  HTML
 )
-
-attach_media(p9, "buzit")
+p9.logo.attach(
+  io:           File.open(Rails.root.join("db", "seeds", "assets", "Buzz_it", "Buzz it.png")),
+  filename:     "Buzz it.png",
+  content_type: "image/png"
+)
+attach_media(p9, "Buzz_it")
 
 tag_names = [
   "Accompagnement", "Affiche", "After Effect", "Bannière", "Canva",
@@ -166,9 +212,9 @@ project_tags_map = {
   "Al_ine" => ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque", "HTML", "CSS", "JavaScript", "Ruby on Rails"],
   "Maison ADGÉ" => ["Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator", "Premier Pro", "Canva", "Figma", "Identité de marque"],
   "Sookee" => ["Réseaux sociaux", "Vidéo", "Premier Pro", "Illustrator", "After Effect", "Canva", "Webflow", "Site internet"],
-  "Braids_Maria" => ["Logo", "Vidéo", "Premier Pro", "Canva"],
-  "Ni Sawa" => ["Logo", "Vidéo", "Mockup", "Bannière", "Flocage", "Photoshop", "Panneau", "Premier Pro", "Formation", "Accompagnement", "Affiche"],
-  "Parole Citoyenne" => ["Site internet", "Logo", "Canva", "WordPress", "Figma", "Communication", "Événementiel", "Formation", "Accompagnement", "Référencement", "SEO", "UI/UX"],
+  "Braids_Maria" => ["Communication", "Vidéo", "Premier Pro", "Illustrator", "Logo", "Accompagnement", "Canva"],
+  "Ni Sawa" => ["Premier Pro", "Mockup", "Bannière", "Photoshop", "Flocage", "Logo", "Vidéo", "Panneau", "Formation", "Accompagnement", "Affiche"],
+  "Parole Citoyenne" => ["Site internet", "Communication", "Logo", "Canva", "WordPress", "Figma", "Événementiel", "Formation", "Accompagnement", "Référencement", "SEO", "UI/UX"],
   "Mais oui, Bien sûr !" => ["Maquette", "Figma", "Logo", "Charte graphique", "Canva", "Illustrator", "Media.io", "Voice maker.in", "Musicscreen", "Firefly" ],
   "olome" => ["Refonte", "Hubspot", "Site internet", "JavaScript", "HTML", "CSS", "SEO", "Contenu éditorial", "Canva", "1.fr", "Ubersuggest", "AnswerThePublic", "Google search console", "Screaming Frog", "Collaboration Sales", "CSM", "UI/UX"],
   "Buzz It" => ["Maquette", "Figma", "Canva", "Charte graphique", "UX/UI", "Design UX"]

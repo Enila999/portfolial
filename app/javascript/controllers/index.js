@@ -18,3 +18,6 @@ application.register("animate-text", AnimateTextController)
 
 import HoverTextController from "./hover_text_home_controller"
 application.register("hover-text", HoverTextController)
+
+import LightboxController from "./lightbox_controller"
+application.register("lightbox", LightboxController)

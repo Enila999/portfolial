@@ -35,9 +35,11 @@ margin: 60px auto;
 .sub-project {
   border: 1px solid #ffffff;
   border-radius: 1em;
-  // padding: 20px;
+  padding: 16px;
   margin-bottom: 30px ;
-  background-image: asset-url("Pattern.png");
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur( 16px );
+  -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -53,4 +55,244 @@ margin: 60px auto;
 
 .sub-title-project {
   font-weight: bold;
+}
+
+/* Container global */
+.bento-group-show {
+  margin: 2rem auto;
+  padding: 0 1rem;
+  max-width: 1200px;
+}
+
+/* Logo + Description  */
+.description-show {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* 1) pattern derrière tout */
+.pattern-bg {
+  grid-column: 1 / -1;
+  position: relative;
+  overflow: hidden;
+}
+.pattern-bg .pattern-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* 2) calque transparent avec texte + logo */
+.text-bg {
+  grid-column: 1 / -1;
+  background-image: asset-url("Pattern.png");
+  border-radius: 16px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* logo sans forcing 1:1, il prend sa hauteur naturellement */
+.logo-show {
+  max-width: 100%;
+  height: auto;
+  align-self: start;
+  border-radius: 16px;
+  object-fit: contain;
+}
+
+/* texte s’adapte à son contenu, scroll si trop grand */
+.text-bg .sub-project {
+  overflow-y: auto;
+}
+.sub-project h3 {
+  margin-top: 0;
+  color: #2b2a29;
+}
+.sub-project p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Grille bento médias */
+.bento-projects {
+  margin-top: 32px;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-auto-rows: min-content;
+  grid-auto-flow: row;
+  gap: 16px;
+  align-items: start;
+}
+
+/* case générique */
+.media-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* médias fill */
+.bento-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  background: none;
+}
+
+.media-item a {
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.media-item a img {
+  border-radius: 0;
+}
+
+
+/* ratio des vidéos (toujours 2×2 cases) */
+.media-item.is-video {
+  // grid-column: span 2;
+  // grid-row:    span 2;
+  aspect-ratio: 16 / 9;
+  width: 25%;
+  height: auto;
+}
+
+/* ratios variables pour les images */
+.media-item.ratio-16-9 {
+  aspect-ratio: 16 / 9;
+  grid-column: span 2;
+}
+.media-item.ratio-4-3 {
+  aspect-ratio: 4 / 3;
+  grid-column: span 1;
+}
+.media-item.ratio-1-1 {
+  aspect-ratio: 1 / 1;
+  grid-column: span 1;
+}
+.media-item.ratio-9-16 {
+  aspect-ratio: 9 / 16;
+  grid-column: span 1;
+  grid-row:    span 2;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 974px) {
+  .text-bg{
+    grid-template-columns: 1fr;
+  }
+   .media-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    grid-auto-flow: row;
+    gap: 0px;
+  }
+
+  .media-item {
+    grid-column: auto !important;
+    grid-row:    auto !important;
+    aspect-ratio: auto !important;
+    height: auto !important;
+  }
+
+  .bento-media {
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .media-item,
+  .text-bg {
+    min-height: 0;
+    margin-bottom: 2rem;
+  }
+}
+
+/* modal full-screen */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  align-items: center;
+  justify-content: center;
+}
+
+/* l’image agrandie */
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
+  object-fit: contain;
+}
+
+/* bouton fermer */
+.lightbox-close {
+  position: absolute;
+  top: 16px; right: 24px;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* On définit une variable pour la taille max carrée */
+:root {
+  --logo-carousel-size: 15%x;
+}
+
+/* Logo */
+.logo-show {
+  max-width: var(--logo-carousel-size);
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  object-fit: contain;
+}
+
+.carousel-grid{
+  display: flex;
+  gap: 0px;
+}
+/* Wrapper du carousel */
+.carousel-wrapper,
+.carousel {
+  aspect-ratio: auto !important;
+  height: auto !important;
+  max-width: 300px;          /* remplace par ta taille souhaitée */
+}
+
+/* S’assure que le carousel inner occupe tout l’espace carré */
+.carousel-wrapper .carousel,
+.carousel-wrapper .carousel-inner,
+.carousel-wrapper .carousel-item {
+  width: 100%;
+  height: 100%;
+}
+
+/* Image du carousel */
+.carousel-img,
+.carousel video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* ou contain si tu veux tout voir */
+  border-radius: 24px;
+}
+
+/* Cacher la légende si besoin */
+.carousel-wrapper h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
 }

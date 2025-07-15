@@ -22,3 +22,18 @@
 .privacy-policy {
   margin-top: 8%;
 }
+
+.link-text {
+  text-decoration: none;
+  color: #2b2a29;
+  font-weight: bold;
+}
+
+.link-text:hover {
+  color: #cbbca0;
+  background-color: #fafafa;
+  border-radius: 24px;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+}

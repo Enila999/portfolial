@@ -40,29 +40,48 @@
       <div class="project-index-grid">
         <% @projects.each do |project| %>
           <div class="card">
-            <%= image_tag project.logo, alt: "Logo de #{project.customer&.name || 'Projet'}", class: "card-img-top-index" %>
+            <!-- IMAGE -->
+            <% if project.logo.attached? %>
+              <%= image_tag(
+                    url_for(project.logo),
+                    alt: "Logo de #{project.customer&.name}",
+                    class: "card-img-top-index"
+                  ) %>
+            <% else %>
+              <%= image_tag(
+                    "default_logo.png",
+                    alt: "Logo par défaut",
+                    class: "card-img-top-index"
+                  ) %>
+            <% end %>
 
+            <!-- CONTENU -->
             <div class="card-index-body">
-              <h2 class="card-index-title"><%= project.customer&.name %></h2>
-              <p class="card-index-text"><%= project.description %></p>
+              <h2 class="card-index-title">
+                <%= project.customer&.name %>
+              </h2>
 
-              <!-- Tags -->
+              <p class="card-index-text">
+                <%= project.description.html_safe %>
+              </p>
+
               <div class="tag-list">
-                <% visible_tags = project.tags.first(4) %>
-                <% visible_tags.each do |tag| %>
+                <% project.tags.first(4).each do |tag| %>
                   <span class="tag-badge"><%= format_tag_name(tag.name) %></span>
                 <% end %>
-
                 <% if project.tags.size > 4 %>
-                  <span class="tag-badge overflow-indicator">...</span>
+                  <span class="tag-badge overflow-indicator">…</span>
                 <% end %>
               </div>
 
-              <%= link_to "Voir le projet", project_path(project), class: "discover-button-all" %>
+              <%= link_to "Voir le projet",
+                    project_path(project),
+                    class: "discover-button-clair" %>
             </div>
           </div>
         <% end %>
       </div>
+
 
       <!-- Bouton nouveau projet -->
       <% if user_signed_in? %>
