@@ -53,12 +53,12 @@
            .group_by { |m| m.blob.metadata["subfolder"] } %>
       <% root_medias = @project.media
            .reject { |m| m.blob.metadata["subfolder"].present? } %>
-
+      <% single = root_medias.one? %>
 
       <!-- BENTO GRID pour médias racine -->
       <div class="bento-group-show" data-controller="lightbox">
         <div class="bento-projects">
-          <div class="media-grid">
+          <div class="media-grid" <%= 'single-image' if single %>>
             <% root_medias.each_with_index do |media, i| %>
               <% url = url_for(media) %>
               <div class="media-item">

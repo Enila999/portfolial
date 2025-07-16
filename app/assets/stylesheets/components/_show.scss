@@ -111,7 +111,7 @@ margin: 60px auto;
 }
 .sub-project h3 {
   margin-top: 0;
-  color: #2b2a29;
+  color: #1e1b16;
 }
 .sub-project p {
   margin-bottom: 1rem;
@@ -130,6 +130,11 @@ margin: 60px auto;
   grid-auto-flow: row;
   gap: 16px;
   align-items: start;
+}
+
+.media-grid.single-image {
+  grid-template-columns: 50%;
+  justify-content: center;
 }
 
 /* case générique */
@@ -226,7 +231,7 @@ margin: 60px auto;
   z-index: 10;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
+  // background: rgba(0,0,0,0.8);
   align-items: center;
   justify-content: center;
 }
