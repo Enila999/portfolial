@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
 
     if @contact.valid?
-      ContactMailer.contact_email(@contact).deliver_now
+      ContactMailer.contact_email(@contact)
       redirect_to new_contact_path, notice: "Merci pour votre message !"
     else
       flash.now[:alert] = "Merci de remplir tous les champs."

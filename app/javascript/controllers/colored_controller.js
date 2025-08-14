@@ -51,7 +51,7 @@ export default class extends Controller {
       this.coloredHeader.style.zIndex = '';
       this.coloredHeader.style.width = '';
       this.coloredHeader.style.fontWeight = 'bold'
-      this.coloredHeader.style.boxShadow = '0px 2px 0px rgba(158, 146, 125, 0)'
+      this.coloredHeader.style.boxShadow = '0px 2px 0px rgba(158, 146, 125, 0.2)'
     }
     this.onScrollRunning = false;
   }

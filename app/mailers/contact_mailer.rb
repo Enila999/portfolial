@@ -4,8 +4,8 @@ class ContactMailer < ApplicationMailer
   def contact_email(contact)
     @contact = contact
     mail(
-      from: "contact.portfolial@gmail.com",
-      reply_to: @contact.email,
+      from: @contact,
+      reply_to: "contact.portfolial@gmail.com",
       subject: "Nouveau message depuis le PortfoliAl"
     )
   end

@@ -33,8 +33,10 @@ customers = customer_names.map { |name| [name, Customer.create!(name: name)] }.t
 
 # ─── Helper attach_media ───────────────────────────────────────────────────
 def attach_media(project, folder)
-  base_path = Rails.root.join("db/seeds/assets", folder)
-  Dir.glob("#{base_path}/**/*").sort.each do |file_path|
+  base_path = Rails.root.join("app","assets", "images",folder)
+  images=Dir.glob("#{base_path}/*")
+  images.push(Dir.glob("#{base_path}/**/*")) if Dir.exist?("#{base_path}/**")
+  images.sort.each do |file_path|
     next unless File.file?(file_path)
 
     # Extrait le sous-dossier relatif
@@ -54,9 +56,9 @@ def attach_media(project, folder)
   end
 end
 
-Project.find_each do |proj|
-  attach_media(proj, proj.customer.name)
-end
+# Project.find_each do |proj|
+#   attach_media(proj, proj.customer.name)
+# end
 
 p1 = Project.create!(
   customer:   customers["Parole Citoyenne"],
@@ -76,7 +78,7 @@ p1 = Project.create!(
   HTML
 )
 p1.logo.attach(
-  io:           File.open(Rails.root.join("db", "seeds", "assets", "Parole_Citoyenne", "Logo Parole Citoyenne.png")),
+  io:           File.open(Rails.root.join("app", "assets", "images", "Parole_Citoyenne","Logo Parole Citoyenne.png")),
   filename:     "Logo Parole Citoyenne.png",
   content_type: "image/png"
 )
@@ -100,7 +102,7 @@ p2 = Project.create!(
   HTML
 )
 p2.logo.attach(
-  io:           File.open(Rails.root.join("db", "seeds", "assets", "Ni Sawa", "Ni Sawa-v10.png")),
+  io:           File.open(Rails.root.join("app", "assets", "images","Ni Sawa","Ni Sawa-v10.png")),
   filename:     "Ni Sawa-v10.png",
   content_type: "image/png"
 )
@@ -115,7 +117,7 @@ p3 = Project.create!(
    HTML
 )
 p3.logo.attach(
-  io:           File.open(Rails.root.join("db", "seeds", "assets", "Braids_Maria", "Braids_Maria.png")),
+  io:           File.open(Rails.root.join("app", "assets", "images","Braids_Maria","Braids_Maria.png")),
   filename:     "Braids_Maria.png",
   content_type: "image/png"
 )
@@ -137,7 +139,7 @@ p4 = Project.create!(
   HTML
 )
 p4.logo.attach(
-  io:           File.open(Rails.root.join("db", "seeds", "assets", "Sookee", "Logo Sookee SF.png")),
+  io:           File.open(Rails.root.join("app", "assets", "images","Sookee","Logo Sookee SF.png")),
   filename:     "Logo Sookee SF.png",
   content_type: "image/png"
 )
@@ -164,7 +166,7 @@ p5 = Project.create!(
   HTML
   )
 p5.logo.attach(
-  io:           File.open(Rails.root.join("db", "seeds", "assets", "Maison_ADGE", "Logo Maison ADGE.png")),
+  io:           File.open(Rails.root.join("app", "assets", "images","Maison_ADGE","Logo Maison ADGE.png")),
   filename:     "Logo Maison ADGE.png",
   content_type: "image/png"
 )
@@ -180,7 +182,7 @@ p6 = Project.create!(
   HTML
 )
 p6.logo.attach(
-  io:           File.open(Rails.root.join("db", "seeds", "assets", "Al_ine", "Al_ine Logo.png")),
+  io:           File.open(Rails.root.join("app", "assets", "images","Al_ine","Al_ine Logo.png")),
   filename:     "Al_ine Logo.png",
   content_type: "image/png"
 )
@@ -196,7 +198,7 @@ p7 = Project.create!(
   HTML
 )
 p7.logo.attach(
-  io:           File.open(Rails.root.join("db", "seeds", "assets", "MOBS", "MOBS!.png")),
+  io:           File.open(Rails.root.join("app", "assets", "images","MOBS","MOBS!.png")),
   filename:     "MOBS!.png",
   content_type: "image/png"
 )
@@ -217,7 +219,7 @@ p8 = Project.create!(
   HTML
 )
 p8.logo.attach(
-  io:           File.open(Rails.root.join("db", "seeds", "assets", "olome", "Logo olome.png")),
+  io:           File.open(Rails.root.join("app", "assets", "images","olome","Logo olome.png")),
   filename:     "Logo olome.png",
   content_type: "image/png"
 )
@@ -238,7 +240,7 @@ p9 = Project.create!(
   HTML
 )
 p9.logo.attach(
-  io:           File.open(Rails.root.join("db", "seeds", "assets", "Buzz_it", "Buzz it.png")),
+  io:           File.open(Rails.root.join("app", "assets", "images","Buzz_it","Buzz it.png")),
   filename:     "Buzz it.png",
   content_type: "image/png"
 )
