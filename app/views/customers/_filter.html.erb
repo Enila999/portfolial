@@ -2,16 +2,7 @@
               class: "filter-form",
               data: {
                 controller: "tag-autocomplete",
-                tag_autocomplete_tags_value: [
-                  "Charte graphique", "Référencement", "SEO", "UX/UI", "Site internet", "Wix", "Illustrator",
-                  "Premier Pro", "Canva", "Figma", "Identité de marque", "HTML", "CSS", "JavaScript",
-                  "Ruby on Rails", "Réseaux sociaux", "Vidéo", "After Effect", "Webflow", "Logo", "Mockup",
-                  "Bannière", "Flocage", "Photoshop", "Panneau", "Formation", "Accompagnement", "Affiche",
-                  "WordPress", "Communication", "Événementiel", "UI/UX", "IA", "Automatisation", "Firefly",
-                  "Media.io", "Voice maker.in", "Musicscreen", "Firefly", "Refonte", "Contenu éditorial",
-                  "1.fr", "Ubersuggest", "AnswerThePublic", "Google search console", "Screaming Frog",
-                  "Collaboration Sales", "CSM"
-                ].to_json
+                tag_autocomplete_tags_value: @tags.to_json
               } do %>
 
   <div class="filter-row">

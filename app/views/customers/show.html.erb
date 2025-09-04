@@ -1,0 +1,85 @@
+<div class="parent">
+  <!-- Banner -->
+  <div class="pre-banner">
+    <div class="banner-background">
+      <div class="top-banner">
+        <div class="banner-img-left">
+          <%= image_tag "Pattern.png" %>
+        </div>
+        <div class="side-banner">
+
+          <% if user_signed_in? %>
+            <%= link_to edit_customer_path(@customer), style: "text-decoration: none" do %>
+              <h1 class="title-page"><%= @customer.name %></h1>
+            <% end %>
+          <% else %>
+              <h1 class="title-page"><%= @customer.name %></h1>
+          <% end %>
+        </div>
+
+        <div class="side-banner-img">
+          <%= image_tag "Pattern.png" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container parent">
+    <div class="show-project">
+
+      <!-- Tags -->
+      <div class="tags">
+        <% @customer.all_tags.each do |tag| %>
+          <span class="tag"><%= tag.name %></span>
+        <% end %>
+      </div>
+
+      <!-- Logo + Description -->
+      <div class="bento-group-show">
+        <div class="description-show">
+          <div class="text-bg">
+            <%= cl_image_tag @customer.logo.key, alt: "Logo de #{@customer.name}", class: "logo-show" %>
+            <% @projects.each do |project| %>
+              <section class="sub-project" style="<%= "display: none" unless project.visibility %>">
+
+                <% if user_signed_in? %>
+                  <%= link_to edit_project_path(project), style: "text-decoration: none; color: #1e1b16" do %>
+                    <h2><%= project&.title %></h2>
+                  <% end %>
+                <% else %>
+                  <h2><%= project&.title %></h2>
+                <% end %>
+                <p><%= project&.description %></p>
+                <p><%= project&.constraint %></p>
+                <p><%= project&.implementation %></p>
+                <% unless project.url.blank? %>
+                  <%= link_to "Voir le site", project&.url, class: "discover-button-clair" %>
+                <% end %>
+              </section>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <%# Préparation des medias triés %>
+
+          </div>
+        </div>
+
+        <!-- Lightbox Modal -->
+        <div data-lightbox-target="modal" class="lightbox-modal">
+          <span data-action="click->lightbox#close"
+                class="lightbox-close">&times;</span>
+          <img data-lightbox-target="image"
+               class="lightbox-content"
+               src="" alt="Preview"/>
+        </div>
+      </div>
+
+      <!-- Back Link -->
+      <%= link_to "Retour sur les projets",
+                  projects_path,
+                  class: "discover-button mt-4" %>
+    </div>
+  </div>
+</div>

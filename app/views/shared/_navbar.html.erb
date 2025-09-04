@@ -19,17 +19,20 @@
           <%= link_to "Accueil", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Projets", projects_path, class: "nav-link" %>
+          <%= link_to "Projets", customers_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "À propos de moi", about_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Contact", contacts_new_path, class: "nav-link" %>
+          <%= link_to "Contact", new_contact_path, class: "nav-link" %>
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "Nouveau projet", new_project_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Nouveau client.e", new_customer_path, class: "nav-link" %>
           </li>
         <% end %>
         <li class="nav-item">

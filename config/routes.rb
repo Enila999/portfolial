@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'contacts/new'
-  get 'contacts/create'
+
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -9,15 +8,15 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :projects, only: [:new, :create, :index, :show]
+  resources :projects, only: [:new, :create, :edit, :update]
   resources :contacts, only: [:new, :create]
+  resources :customers, param: :slug, path: "mes-projets"
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get "projects", to: "projects#index"
-  get "projects/:id", to: "projects#show"
+
   get "/a-propos", to: "pages#about", as: :about
-  get "contact", to: "pages#contact", as: :contact
-  get "/politique-de-confidentialite", to: "pages#privacy", as: :privacy_path
-  get "/mentions-legales", to: "pages#legal", as: :legal_path
+  get "/contact", to: "pages#contact", as: :contact
+  get "/politique-de-confidentialite", to: "pages#privacy", as: :privacy
+  get "/mentions-legales", to: "pages#legal", as: :legal
 end

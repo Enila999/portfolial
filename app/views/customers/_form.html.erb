@@ -1,0 +1,5 @@
+<%= simple_form_for @customer do |f| %>
+  <%= f.input :name, label: 'Nom', placeholder: 'Entrer un nom', required: true  %>
+  <%= f.input :logo, as: :file, label: 'Logo', required: true  %>
+  <%= f.button :submit, "Créer", class:'discover-button' %>
+<% end %>

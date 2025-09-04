@@ -38,44 +38,37 @@
 
       <!-- Grille des projets -->
       <div class="project-index-grid">
-        <% @projects.each do |project| %>
+        <% @customers.each do |customer| %>
           <div class="card">
             <!-- IMAGE -->
-            <% if project.logo.attached? %>
-              <%= image_tag(
-                    url_for(project.logo),
-                    alt: "Logo de #{project.customer&.name}",
-                    class: "card-img-top-index"
-                  ) %>
-            <% else %>
-              <%= image_tag(
-                    "default_logo.png",
-                    alt: "Logo par défaut",
-                    class: "card-img-top-index"
-                  ) %>
+
+            <!-- TODO: enlever le unless ! -->
+            <% unless customer.logo.blank? %>
+              <%= cl_image_tag customer.logo.key, alt: "Logo de #{customer.name}"%>
             <% end %>
+
 
             <!-- CONTENU -->
             <div class="card-index-body">
               <h2 class="card-index-title">
-                <%= project.customer&.name %>
+                <%= customer&.name %>
               </h2>
 
               <p class="card-index-text">
-                <%= project.description.html_safe %>
+                <%= customer.projects.first&.description %>
               </p>
 
               <div class="tag-list">
-                <% project.tags.first(4).each do |tag| %>
+                <% customer.all_tags.first(4).each do |tag| %>
                   <span class="tag-badge"><%= format_tag_name(tag.name) %></span>
                 <% end %>
-                <% if project.tags.size > 4 %>
-                  <span class="tag-badge overflow-indicator">…</span>
+                <% if customer.all_tags.size > 4 %>
+                  <span class="tag-badge overflow-indicator">+<%= customer.all_tags.size - 4 %></span>
                 <% end %>
               </div>
 
               <%= link_to "Voir le projet",
-                    project_path(project),
+                    customer,
                     class: "discover-button-clair" %>
             </div>
           </div>

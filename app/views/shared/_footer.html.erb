@@ -11,15 +11,15 @@
     <div class="footer-menu">
       <div class="footer-column">
         <%= link_to "Accueil", root_path, class: "link-menu-footer" %>
-        <%= link_to "Projets", projects_path, class: "link-menu-footer" %>
+        <%= link_to "Projets", customers_path, class: "link-menu-footer" %>
       </div>
       <div class="footer-column">
         <%= link_to "À propos", about_path, class: "link-menu-footer" %>
-        <%= link_to "Contact", contacts_new_path, class: "link-menu-footer" %>
+        <%= link_to "Contact", new_contact_path, class: "link-menu-footer" %>
       </div>
       <div class="footer-column">
-        <%= link_to "Politique de confidentialité", privacy_path_path, class: "link-menu-footer" %>
-        <%= link_to "Mentions légales", legal_path_path, class: "link-menu-footer" %>
+        <%= link_to "Politique de confidentialité", privacy_path, class: "link-menu-footer" %>
+        <%= link_to "Mentions légales", legal_path, class: "link-menu-footer" %>
       </div>
       <% if user_signed_in? %>
         <div class="footer-column">

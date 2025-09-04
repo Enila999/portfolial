@@ -1,11 +1,11 @@
 class CreateProjects < ActiveRecord::Migration[7.1]
   def change
     create_table :projects do |t|
-      t.string :customer
       t.string :description
-      t.string :url_media
-      t.string :icons
-      t.string :logo
+      t.string :title
+      t.string :constraint
+      t.string :implementation
+      t.boolean :visibility, default: false
 
       t.timestamps
     end

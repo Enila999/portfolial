@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_10_164552) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_04_172846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_10_164552) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
   end
 
   create_table "icons", force: :cascade do |t|
@@ -85,18 +86,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_10_164552) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "customer"
     t.string "description"
-    t.string "url_media"
-    t.string "icons"
-    t.string "logo"
+    t.string "title"
+    t.string "constraint"
+    t.string "implementation"
+    t.boolean "visibility", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "tags", default: [], array: true
-    t.string "slug"
     t.bigint "customer_id"
+    t.string "url"
     t.index ["customer_id"], name: "index_projects_on_customer_id"
-    t.index ["slug"], name: "index_projects_on_slug", unique: true
   end
 
   create_table "tags", force: :cascade do |t|
@@ -114,7 +113,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_10_164552) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
