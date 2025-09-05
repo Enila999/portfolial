@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_09_04_172846) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_05_173329) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_04_172846) do
     t.integer "position"
   end
 
+  create_table "carrousels", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_carrousels_on_project_id"
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -71,7 +78,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_04_172846) do
 
   create_table "icons", force: :cascade do |t|
     t.string "name"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -119,6 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_04_172846) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "carrousels", "projects"
   add_foreign_key "project_tags", "projects"
   add_foreign_key "project_tags", "tags"
   add_foreign_key "projects", "customers"

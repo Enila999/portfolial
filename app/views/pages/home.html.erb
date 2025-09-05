@@ -38,7 +38,7 @@
     <div class="cards">
       <% @icons.each do |icon| %>
       <div class="card-category card-homepage"
-          style="background-image: url(<%= asset_path("icons/#{icon.image}") %>)">
+          style="background-image: url(<%= asset_path("icons/#{icon.name}.png") %>)">
             <h3 class="icon-title"><%= icon.name.upcase %></h3>
       </div>
       <% end %>

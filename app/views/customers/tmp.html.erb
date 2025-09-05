@@ -9,7 +9,7 @@
       <!-- BENTO GRID pour médias racine -->
       <div class="bento-group-show" data-controller="lightbox">
         <div class="bento-projects">
-          <div class="media-grid" <%= 'single-image' if single %>>
+          <div class="media-grid" >
             <% root_medias.each_with_index do |media, i| %>
               <% url = url_for(media) %>
               <div class="media-item">
@@ -86,4 +86,3 @@
           </div>
         <% end %>
       <% end %>
-

@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :authenticate_user!, expect: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index]
   def index
     @customers = Customer.includes(projects: :tags)
     @banners = Banner.all

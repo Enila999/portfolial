@@ -40,7 +40,14 @@
           <div class="text-bg">
             <%= cl_image_tag @customer.logo.key, alt: "Logo de #{@customer.name}", class: "logo-show" %>
             <% @projects.each do |project| %>
-              <section class="sub-project" style="<%= "display: none" unless project.visibility %>">
+
+              <% if !project.visibility && user_signed_in? %>
+                <% style = "background-color: #cbbca0; color: gray" %>
+              <% elsif !project.visibility %>
+                <% style = "display: none" %>
+              <% end %>
+
+              <section class="sub-project" style="<%= style %>">
 
                 <% if user_signed_in? %>
                   <%= link_to edit_project_path(project), style: "text-decoration: none; color: #1e1b16" do %>

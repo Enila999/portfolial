@@ -1,4 +1,4 @@
-<%= simple_form_for @project do |f| %>
+<%= simple_form_for @project, html: { multipart: true } do |f| %>
   <%= f.association :customer, label: 'Client', prompt: 'Entrer un client', required: true  %>
   <%= f.input :tag_ids, label: 'Tags', as: :select, collection: Tag.pluck(:name, :id), input_html: {multiple: true, class: 'tag-select'} %>
   <%= f.input :title, label: 'Titre', placeholder: 'Entrer un nom', required: true  %>
@@ -7,6 +7,9 @@
   <%= f.input :implementation, label: 'Mise en oeuvre', placeholder: 'Entrer une mise en oeuvre' %>
   <%= f.input :visibility, as: :boolean, label: 'Visibilité'%>
   <%= f.input :url, label: 'Url' %>
-  <%= f.input :medias, as: :file, input_html: {multiple: true}, label: 'Media', placeholder: 'Entrer un media', required: true  %>
-  <%= f.button :submit, "Créer", class:'discover-button-clair' %>
+  <%= f.input :medias, as: :file, input_html: {multiple: true}, label: 'Media', hint: 'Entrer un ou plusieurs medias', required: true  %>
+  <%= f.simple_fields_for :carrousels do |carrousel_form| %>
+    <%= carrousel_form.input :images, as: :file, input_html: {multiple: true}, label: 'Carrousel', hint: 'Entrer les medias', required: false %>
+  <% end %>
+  <%= f.button :submit, "Créer ou modifier", class:'discover-button-clair' %>
 <% end %>

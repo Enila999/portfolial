@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, expect: [:show, :index]
+  before_action :authenticate_user!
   include TagsHelper
 
   def new
     @project = Project.new
+    @project.carrousels.build
   end
 
   def create
@@ -33,6 +34,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:customer_id, :title, :description, :constraint, :implementation, :visibility, medias: [], tags: [])
+    params.require(:project).permit(:customer_id, :title, :description, :constraint, :implementation, :visibility, medias: [], tags: [], carrousels_attributes: [images: []])
   end
 end
